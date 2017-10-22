@@ -13,6 +13,9 @@
 		4B5252941F9CAF8A0058769C /* MobileApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B5252921F9CAF8A0058769C /* MobileApp.xcdatamodeld */; };
 		4B5252961F9CAF8A0058769C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B5252951F9CAF8A0058769C /* Assets.xcassets */; };
 		4B5252991F9CAF8A0058769C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B5252971F9CAF8A0058769C /* LaunchScreen.storyboard */; };
+		4B6C20501F9CD68D00B74B21 /* OwnerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C204F1F9CD68D00B74B21 /* OwnerListViewController.swift */; };
+		4B6C20531F9CD83100B74B21 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C20521F9CD83100B74B21 /* Constants.swift */; };
+		4B6C20561F9CD85D00B74B21 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C20551F9CD85D00B74B21 /* User.swift */; };
 		7457CAE95408CFF600D837E9 /* Pods_MobileApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC34AB3D92978F0584ADBB6 /* Pods_MobileApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +29,9 @@
 		4B5252951F9CAF8A0058769C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B5252981F9CAF8A0058769C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B52529A1F9CAF8A0058769C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B6C204F1F9CD68D00B74B21 /* OwnerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerListViewController.swift; sourceTree = "<group>"; };
+		4B6C20521F9CD83100B74B21 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4B6C20551F9CD85D00B74B21 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6555B1648A8EA522D82B3184 /* Pods-MobileApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileApp/Pods-MobileApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6CC34AB3D92978F0584ADBB6 /* Pods_MobileApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -63,8 +69,11 @@
 		4B52528A1F9CAF890058769C /* MobileApp */ = {
 			isa = PBXGroup;
 			children = (
-				4B52528B1F9CAF890058769C /* AppDelegate.swift */,
+				4B6C20541F9CD85400B74B21 /* Models */,
+				4B6C20511F9CD80E00B74B21 /* Utils */,
 				4B52528D1F9CAF8A0058769C /* ViewController.swift */,
+				4B6C204E1F9CD60500B74B21 /* ViewControllers */,
+				4B52528B1F9CAF890058769C /* AppDelegate.swift */,
 				4B52528F1F9CAF8A0058769C /* Main.storyboard */,
 				4B5252951F9CAF8A0058769C /* Assets.xcassets */,
 				4B5252971F9CAF8A0058769C /* LaunchScreen.storyboard */,
@@ -72,6 +81,30 @@
 				4B5252921F9CAF8A0058769C /* MobileApp.xcdatamodeld */,
 			);
 			path = MobileApp;
+			sourceTree = "<group>";
+		};
+		4B6C204E1F9CD60500B74B21 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4B6C204F1F9CD68D00B74B21 /* OwnerListViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4B6C20511F9CD80E00B74B21 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4B6C20521F9CD83100B74B21 /* Constants.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4B6C20541F9CD85400B74B21 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4B6C20551F9CD85D00B74B21 /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		85FF5EE1AA68C7E234074E64 /* Frameworks */ = {
@@ -222,8 +255,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B6C20531F9CD83100B74B21 /* Constants.swift in Sources */,
 				4B52528E1F9CAF8A0058769C /* ViewController.swift in Sources */,
+				4B6C20561F9CD85D00B74B21 /* User.swift in Sources */,
 				4B52528C1F9CAF890058769C /* AppDelegate.swift in Sources */,
+				4B6C20501F9CD68D00B74B21 /* OwnerListViewController.swift in Sources */,
 				4B5252941F9CAF8A0058769C /* MobileApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
