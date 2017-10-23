@@ -16,6 +16,12 @@
 		4B6C20501F9CD68D00B74B21 /* OwnerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C204F1F9CD68D00B74B21 /* OwnerListViewController.swift */; };
 		4B6C20531F9CD83100B74B21 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C20521F9CD83100B74B21 /* Constants.swift */; };
 		4B6C20561F9CD85D00B74B21 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C20551F9CD85D00B74B21 /* User.swift */; };
+		4B6C20581F9D23A600B74B21 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C20571F9D23A600B74B21 /* ApiClient.swift */; };
+		4B6C205A1F9D28DD00B74B21 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C20591F9D28DD00B74B21 /* Book.swift */; };
+		4B6C205D1F9D2EF000B74B21 /* BookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C205C1F9D2EF000B74B21 /* BookListViewModel.swift */; };
+		4B6C205F1F9D30FE00B74B21 /* BooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C205E1F9D30FE00B74B21 /* BooksTableViewController.swift */; };
+		4B6C20611F9D3A8700B74B21 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C20601F9D3A8700B74B21 /* BookTableViewCell.swift */; };
+		4B6C20631F9D3ACC00B74B21 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C20621F9D3ACC00B74B21 /* Author.swift */; };
 		7457CAE95408CFF600D837E9 /* Pods_MobileApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC34AB3D92978F0584ADBB6 /* Pods_MobileApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +38,12 @@
 		4B6C204F1F9CD68D00B74B21 /* OwnerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerListViewController.swift; sourceTree = "<group>"; };
 		4B6C20521F9CD83100B74B21 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4B6C20551F9CD85D00B74B21 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4B6C20571F9D23A600B74B21 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		4B6C20591F9D28DD00B74B21 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		4B6C205C1F9D2EF000B74B21 /* BookListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewModel.swift; sourceTree = "<group>"; };
+		4B6C205E1F9D30FE00B74B21 /* BooksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksTableViewController.swift; sourceTree = "<group>"; };
+		4B6C20601F9D3A8700B74B21 /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
+		4B6C20621F9D3ACC00B74B21 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		6555B1648A8EA522D82B3184 /* Pods-MobileApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileApp/Pods-MobileApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6CC34AB3D92978F0584ADBB6 /* Pods_MobileApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -69,6 +81,7 @@
 		4B52528A1F9CAF890058769C /* MobileApp */ = {
 			isa = PBXGroup;
 			children = (
+				4B6C205B1F9D2ED600B74B21 /* ViewModels */,
 				4B6C20541F9CD85400B74B21 /* Models */,
 				4B6C20511F9CD80E00B74B21 /* Utils */,
 				4B52528D1F9CAF8A0058769C /* ViewController.swift */,
@@ -87,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				4B6C204F1F9CD68D00B74B21 /* OwnerListViewController.swift */,
+				4B6C205E1F9D30FE00B74B21 /* BooksTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -95,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				4B6C20521F9CD83100B74B21 /* Constants.swift */,
+				4B6C20571F9D23A600B74B21 /* ApiClient.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -103,8 +118,19 @@
 			isa = PBXGroup;
 			children = (
 				4B6C20551F9CD85D00B74B21 /* User.swift */,
+				4B6C20591F9D28DD00B74B21 /* Book.swift */,
+				4B6C20621F9D3ACC00B74B21 /* Author.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4B6C205B1F9D2ED600B74B21 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4B6C205C1F9D2EF000B74B21 /* BookListViewModel.swift */,
+				4B6C20601F9D3A8700B74B21 /* BookTableViewCell.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		85FF5EE1AA68C7E234074E64 /* Frameworks */ = {
@@ -255,9 +281,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B6C205A1F9D28DD00B74B21 /* Book.swift in Sources */,
+				4B6C20581F9D23A600B74B21 /* ApiClient.swift in Sources */,
 				4B6C20531F9CD83100B74B21 /* Constants.swift in Sources */,
+				4B6C20611F9D3A8700B74B21 /* BookTableViewCell.swift in Sources */,
 				4B52528E1F9CAF8A0058769C /* ViewController.swift in Sources */,
 				4B6C20561F9CD85D00B74B21 /* User.swift in Sources */,
+				4B6C20631F9D3ACC00B74B21 /* Author.swift in Sources */,
+				4B6C205D1F9D2EF000B74B21 /* BookListViewModel.swift in Sources */,
+				4B6C205F1F9D30FE00B74B21 /* BooksTableViewController.swift in Sources */,
 				4B52528C1F9CAF890058769C /* AppDelegate.swift in Sources */,
 				4B6C20501F9CD68D00B74B21 /* OwnerListViewController.swift in Sources */,
 				4B5252941F9CAF8A0058769C /* MobileApp.xcdatamodeld in Sources */,

@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -102,6 +103,69 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3i-wM-lQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1305" y="-278"/>
+        </scene>
+        <!--Books Table View Controller-->
+        <scene sceneID="0Bh-bj-bLs">
+            <objects>
+                <tableViewController storyboardIdentifier="BooksTableViewController" id="dKt-dM-gKT" customClass="BooksTableViewController" customModule="MobileApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YDH-Mz-a8K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookCell" rowHeight="85" id="Je8-B5-T4W" customClass="BookTableViewCell" customModule="MobileApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Je8-B5-T4W" id="5vh-dg-Zfu">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzW-2q-fbb">
+                                            <rect key="frame" x="9" y="9" width="359" height="26"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htt-CE-Fcy">
+                                            <rect key="frame" x="9" y="43" width="359" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Htt-CE-Fcy" firstAttribute="leading" secondItem="5vh-dg-Zfu" secondAttribute="leadingMargin" constant="1" id="6mZ-38-azh"/>
+                                        <constraint firstItem="Htt-CE-Fcy" firstAttribute="trailing" secondItem="5vh-dg-Zfu" secondAttribute="trailingMargin" constant="1" id="K66-Qd-qba"/>
+                                        <constraint firstItem="Htt-CE-Fcy" firstAttribute="top" secondItem="fzW-2q-fbb" secondAttribute="bottom" constant="8" id="NAI-PA-8ws"/>
+                                        <constraint firstItem="fzW-2q-fbb" firstAttribute="top" secondItem="5vh-dg-Zfu" secondAttribute="topMargin" constant="1" id="q9i-FW-ZCx"/>
+                                        <constraint firstItem="fzW-2q-fbb" firstAttribute="centerX" secondItem="5vh-dg-Zfu" secondAttribute="centerX" constant="1" id="wsO-jw-p5B"/>
+                                        <constraint firstItem="fzW-2q-fbb" firstAttribute="leading" secondItem="5vh-dg-Zfu" secondAttribute="leadingMargin" constant="1" id="yvn-8K-Cod"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="AuthorLabel" destination="Htt-CE-Fcy" id="5Jo-d3-XHw"/>
+                                    <outlet property="TitleLabel" destination="fzW-2q-fbb" id="jm1-D5-lck"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dKt-dM-gKT" id="xZg-7G-qJc"/>
+                            <outlet property="delegate" destination="dKt-dM-gKT" id="29r-fc-qqP"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="viewModel" destination="yhc-rn-Sob" id="2yP-by-1eZ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d5x-bk-oOC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="ZyJ-Nd-vOn" customClass="ApiClient" customModule="MobileApp" customModuleProvider="target"/>
+                <customObject id="yhc-rn-Sob" customClass="BookListViewModel" customModule="MobileApp" customModuleProvider="target">
+                    <connections>
+                        <outlet property="apiClient" destination="ZyJ-Nd-vOn" id="5zP-b1-JA8"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="1304.8" y="400.74962518740631"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="v7C-cs-jdQ">

@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class ViewController: UIViewController {
-
+    
     //MARK: Outlets
     @IBOutlet weak var UsernameField: UITextField!
     @IBOutlet weak var PasswordField: UITextField!
@@ -28,13 +28,14 @@ class ViewController: UIViewController {
         //Hide the back button
         let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
-    }
 
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     //MARK: Actions
     @IBAction func LoginBtnPress(_ sender: Any) {
         let parameters: Parameters = [
@@ -47,7 +48,7 @@ class ViewController: UIViewController {
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
-        Alamofire.request(Constans.LoginURL,method:.post,parameters:parameters)
+        Alamofire.request(Constants.LoginURL,method:.post,parameters:parameters)
             .validate()
             .responseJSON { response in
                 
@@ -63,12 +64,12 @@ class ViewController: UIViewController {
                     self.defaultValues.set(user.Username,forKey:"username")
                     self.defaultValues.set(user.Role,forKey:"userrole")
                     switch user.Role{
-//                    case 1:
-//                        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewerViewController") as! ViewerViewController
-//                        self.navigationController?.pushViewController(profileViewController, animated: true)
-//                        self.dismiss(animated: false, completion: nil)
+                        //                    case 1:
+                        //                        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewerViewController") as! ViewerViewController
+                        //                        self.navigationController?.pushViewController(profileViewController, animated: true)
+                    //                        self.dismiss(animated: false, completion: nil)
                     case 2:
-                        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "OwnerListViewController") as! OwnerListViewController
+                        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
                         self.navigationController?.pushViewController(profileViewController, animated: true)
                         self.dismiss(animated: false, completion: nil)
                     default:
@@ -102,9 +103,9 @@ class ViewController: UIViewController {
                     }
                     
                 }
+        }
+        
+        
+        
     }
-    
-    
-
-}
 }
