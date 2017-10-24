@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 public class User{
     var Id: UUID;
     var Username: String;
@@ -16,5 +17,12 @@ public class User{
         self.Id=Id;
         self.Username=Username;
         self.Role=Role;
+    }
+    
+    init(json: JSON)
+    {
+        Id = UUID(uuidString: json["Id"].string ?? "00000000-0000-0000-0000-000000000000")!
+        Username = json["Username"].string ?? ""
+        Role = json["Role"].int ?? 1
     }
 }

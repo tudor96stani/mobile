@@ -11,6 +11,7 @@ import Foundation
 public enum Constants{
     
     static let BaseURL: String = "http://home-server.go.ro/MobileApi/api/v1/";
-    static let LoginURL: String = BaseURL + "users";
+    static let LoginURL: String = BaseURL + "users/login";
     static let UserBooksURL: String = BaseURL + "books/";
+    static let RegisterURL: String = BaseURL + "users/register";
 }

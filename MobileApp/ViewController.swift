@@ -37,6 +37,14 @@ class ViewController: UIViewController {
     }
     
     //MARK: Actions
+    
+    @IBAction func RegisterBtnPress(_ sender: Any) {
+        let registerViewController = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        self.navigationController?.pushViewController(registerViewController, animated: true)
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    
     @IBAction func LoginBtnPress(_ sender: Any) {
         let parameters: Parameters = [
             "Username":UsernameField.text!,
@@ -44,7 +52,7 @@ class ViewController: UIViewController {
         ]
         activityIndicator.center = self.view.center;
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
@@ -64,10 +72,10 @@ class ViewController: UIViewController {
                     self.defaultValues.set(user.Username,forKey:"username")
                     self.defaultValues.set(user.Role,forKey:"userrole")
                     switch user.Role{
-                        //                    case 1:
-                        //                        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewerViewController") as! ViewerViewController
-                        //                        self.navigationController?.pushViewController(profileViewController, animated: true)
-                    //                        self.dismiss(animated: false, completion: nil)
+                    case 1:
+                        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
+                        self.navigationController?.pushViewController(profileViewController, animated: true)
+                        self.dismiss(animated: false, completion: nil)
                     case 2:
                         let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
                         self.navigationController?.pushViewController(profileViewController, animated: true)

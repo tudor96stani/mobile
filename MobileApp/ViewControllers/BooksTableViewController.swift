@@ -18,6 +18,7 @@ class BooksTableViewController: UITableViewController {
         let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
         
+        //Call the GetBooks method of the viewmodel with the completionHandler that reloads the table data
         viewModel.GetBooks(UserId: UUID(uuidString:UserDefaults.standard.string(forKey:"userid")!)!) {
             self.tableView.reloadData()
         }
