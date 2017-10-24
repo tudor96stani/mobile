@@ -59,17 +59,38 @@ class ApiClient :NSObject{
                 }
         }
     }
+    
+    func GetAllAuthors(completion: @escaping ([Author]?) -> Void)
+    {
+        var auth = [Author]()
+        let a1 = Author(id: UUID(uuidString: "5122117d-e0a0-437d-8752-8e11d4e41fee")!, firstname: "Jane", lastname: "Austen")
+        let a2 = Author(id: UUID(uuidString: "be9617bc-2f07-485a-ae00-a24de7d19b08")!, firstname: "Oscar", lastname: "Wilde")
+        auth.append(a1)
+        auth.append(a2)
+        completion(auth)
+    }
+    
+    func UpdateBook(id: UUID,title:String,authorid:UUID, completion: @escaping (Book?) -> Void)
+    {
+            //make the call to the api
+            //completion(nil)
+        let parameters: Parameters = [
+            "Id":id.uuidString,
+            "Title":title,
+            "AuthorId":authorid.uuidString
+        ]
+        Alamofire.request(Constants.UpdateBookURL,method:.post,parameters: parameters).validate()
+            .responseJSON { (response) in
+                switch response.result
+                {
+                case .success(let value):
+                    let json = JSON(value)
+                    let book = Book(json: json)
+                    completion(book)
+                case .failure( _):
+                    completion(nil)
+                }
+        }
+    }
 }
-/*
- response:
- {
- "Success": "true",
- "Message":"OK",
- "User":
-     {
-         "Id":"93241",
-         "Username":"username",
-         "Role":"1"
-     }
- }
- */
+

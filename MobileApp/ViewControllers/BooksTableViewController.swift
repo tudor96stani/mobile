@@ -15,7 +15,7 @@ class BooksTableViewController: UITableViewController {
         super.viewDidLoad()
         
         //hide back button
-        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
+        let backButton = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: #selector(Logout(sender:)))
         navigationItem.leftBarButtonItem = backButton
         
         //Call the GetBooks method of the viewmodel with the completionHandler that reloads the table data
@@ -91,14 +91,47 @@ class BooksTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
+    //MARK: Methods
+    @objc func Logout(sender: UIBarButtonItem) {
+        UserDefaults.standard.removeObject(forKey: "userid")
+        UserDefaults.standard.removeObject(forKey: "username")
+        UserDefaults.standard.removeObject(forKey: "userrole")
+        self.navigationController?.popViewController(animated: true);
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        super.prepare(for:segue,sender:sender)
+        
+        guard let navigationViewController = segue.destination as? UINavigationController
+            else{
+                fatalError("Unexpected destination")
+            }
+        guard let detailViewController = navigationViewController.topViewController as? DetailsViewController else{
+            fatalError("Unexpected destination")
+        }
+        guard let selectedBook = sender as? BookTableViewCell
+            else{
+            fatalError("Unexpected sender")
+        }
+        
+        guard let indexPath = tableView.indexPath(for: selectedBook) else{
+            fatalError("The selected cell is not displayed by the table")
+        }
+        
+        if let selectedBookViewModel = viewModel.FindBookDetailsViewModel(for: indexPath){
+            detailViewController.viewModel = selectedBookViewModel
+        }
+        else{
+            fatalError("Could not create view model for selected item")
+        }
+        }
     }
-    */
+ 
 
-}
+

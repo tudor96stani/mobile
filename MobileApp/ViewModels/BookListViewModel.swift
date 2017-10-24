@@ -44,4 +44,16 @@ class BookListViewModel: NSObject
         }
         return " ";
     }
+    
+    func FindBookDetailsViewModel(for indexPath: IndexPath) -> BookDetailsViewModel?
+    {
+        if let book = books?[indexPath.row]
+        {
+            let viewmodel = BookDetailsViewModel(b:book)
+            return viewmodel
+        }
+        return nil
+    }
+    
+    //
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
+class RegisterViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate {
 
     //MARK: Outlets
     @IBOutlet weak var UsernameField: UITextField!
@@ -22,10 +22,18 @@ class RegisterViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     let pickerData = ["Viewer","Owner"]
     
     
+    //MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         RolePicker.dataSource=self
         RolePicker.delegate=self
+        
+        UsernameField.delegate=self
+        EmailField.delegate=self
+        PasswordField.delegate=self
+        UsernameField.tag=0
+        EmailField.tag=1
+        PasswordField.tag=2
         // Do any additional setup after loading the view.
     }
 
@@ -48,7 +56,22 @@ class RegisterViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        // Try to find next responder
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            // Not found, so remove keyboard.
+            textField.resignFirstResponder()
+        }
+        // Do not add a line break
+        return false
+    }
+    
   
+    //MARK: Methods
     func LoginAfterSuccessfulRegistration(user: User)-> Void{
         switch user.Role{
             //                    case 1:

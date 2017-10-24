@@ -20,6 +20,12 @@ class Book{
         AuthorId=authorid;
         BookAuthor=Author()
     }
+    init(id:UUID,title:String,authorid:UUID,author:Author){
+        Id=id;
+        Title=title;
+        AuthorId=authorid;
+        BookAuthor = author
+    }
     
     init(json: JSON){
         Id=UUID(uuidString:json["Id"].string ?? "00000000-0000-0000-0000-000000000000")!

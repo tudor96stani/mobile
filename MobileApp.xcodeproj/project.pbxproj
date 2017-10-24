@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4B0438B81F9EA24800A523A5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0438B71F9EA24800A523A5 /* RegisterViewController.swift */; };
 		4B0438BA1F9EA67900A523A5 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0438B91F9EA67900A523A5 /* RegisterViewModel.swift */; };
+		4B4ECA981F9FBA3F004566F4 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4ECA971F9FBA3F004566F4 /* DetailsViewController.swift */; };
+		4B4ECA9A1F9FBE22004566F4 /* BookDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4ECA991F9FBE22004566F4 /* BookDetailsViewModel.swift */; };
+		4B4ECA9C1F9FCA2B004566F4 /* EditBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4ECA9B1F9FCA2B004566F4 /* EditBookViewController.swift */; };
 		4B52528C1F9CAF890058769C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52528B1F9CAF890058769C /* AppDelegate.swift */; };
 		4B52528E1F9CAF8A0058769C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52528D1F9CAF8A0058769C /* ViewController.swift */; };
 		4B5252911F9CAF8A0058769C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B52528F1F9CAF8A0058769C /* Main.storyboard */; };
@@ -24,6 +27,7 @@
 		4B6C205F1F9D30FE00B74B21 /* BooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C205E1F9D30FE00B74B21 /* BooksTableViewController.swift */; };
 		4B6C20611F9D3A8700B74B21 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C20601F9D3A8700B74B21 /* BookTableViewCell.swift */; };
 		4B6C20631F9D3ACC00B74B21 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C20621F9D3ACC00B74B21 /* Author.swift */; };
+		4BF94C141F9FD76C0090A53B /* BookEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF94C131F9FD76C0090A53B /* BookEditViewModel.swift */; };
 		7457CAE95408CFF600D837E9 /* Pods_MobileApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC34AB3D92978F0584ADBB6 /* Pods_MobileApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +35,9 @@
 		2E2B9E6698C5E152C5CD3E44 /* Pods-MobileApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileApp/Pods-MobileApp.release.xcconfig"; sourceTree = "<group>"; };
 		4B0438B71F9EA24800A523A5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4B0438B91F9EA67900A523A5 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		4B4ECA971F9FBA3F004566F4 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		4B4ECA991F9FBE22004566F4 /* BookDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsViewModel.swift; sourceTree = "<group>"; };
+		4B4ECA9B1F9FCA2B004566F4 /* EditBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBookViewController.swift; sourceTree = "<group>"; };
 		4B5252881F9CAF890058769C /* MobileApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B52528B1F9CAF890058769C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B52528D1F9CAF8A0058769C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +55,7 @@
 		4B6C205E1F9D30FE00B74B21 /* BooksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksTableViewController.swift; sourceTree = "<group>"; };
 		4B6C20601F9D3A8700B74B21 /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
 		4B6C20621F9D3ACC00B74B21 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		4BF94C131F9FD76C0090A53B /* BookEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookEditViewModel.swift; sourceTree = "<group>"; };
 		6555B1648A8EA522D82B3184 /* Pods-MobileApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileApp/Pods-MobileApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6CC34AB3D92978F0584ADBB6 /* Pods_MobileApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -106,6 +114,8 @@
 				4B6C204F1F9CD68D00B74B21 /* OwnerListViewController.swift */,
 				4B6C205E1F9D30FE00B74B21 /* BooksTableViewController.swift */,
 				4B0438B71F9EA24800A523A5 /* RegisterViewController.swift */,
+				4B4ECA971F9FBA3F004566F4 /* DetailsViewController.swift */,
+				4B4ECA9B1F9FCA2B004566F4 /* EditBookViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -135,6 +145,8 @@
 				4B6C205C1F9D2EF000B74B21 /* BookListViewModel.swift */,
 				4B6C20601F9D3A8700B74B21 /* BookTableViewCell.swift */,
 				4B0438B91F9EA67900A523A5 /* RegisterViewModel.swift */,
+				4B4ECA991F9FBE22004566F4 /* BookDetailsViewModel.swift */,
+				4BF94C131F9FD76C0090A53B /* BookEditViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -289,6 +301,8 @@
 			files = (
 				4B6C205A1F9D28DD00B74B21 /* Book.swift in Sources */,
 				4B6C20581F9D23A600B74B21 /* ApiClient.swift in Sources */,
+				4B4ECA9A1F9FBE22004566F4 /* BookDetailsViewModel.swift in Sources */,
+				4B4ECA9C1F9FCA2B004566F4 /* EditBookViewController.swift in Sources */,
 				4B6C20531F9CD83100B74B21 /* Constants.swift in Sources */,
 				4B6C20611F9D3A8700B74B21 /* BookTableViewCell.swift in Sources */,
 				4B52528E1F9CAF8A0058769C /* ViewController.swift in Sources */,
@@ -298,9 +312,11 @@
 				4B6C205F1F9D30FE00B74B21 /* BooksTableViewController.swift in Sources */,
 				4B0438BA1F9EA67900A523A5 /* RegisterViewModel.swift in Sources */,
 				4B52528C1F9CAF890058769C /* AppDelegate.swift in Sources */,
+				4BF94C141F9FD76C0090A53B /* BookEditViewModel.swift in Sources */,
 				4B0438B81F9EA24800A523A5 /* RegisterViewController.swift in Sources */,
 				4B6C20501F9CD68D00B74B21 /* OwnerListViewController.swift in Sources */,
 				4B5252941F9CAF8A0058769C /* MobileApp.xcdatamodeld in Sources */,
+				4B4ECA981F9FBA3F004566F4 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
