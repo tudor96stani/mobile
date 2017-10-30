@@ -28,10 +28,10 @@ public class Author {
         LastName=""
     }
     
-//    init(json: JSON)
-//    {
-//        Id=UUID(uuidString: json["Id"].string ?? "00000000-0000-0000-0000-000000000000")!
-//        FirstName=json["FirstName"].string ?? ""
-//        LastName=json["LastName"].string ?? ""
-//    }
+    init(json: JSON)
+    {
+        Id=UUID(uuidString: json["Id"].string ?? "00000000-0000-0000-0000-000000000000")!
+        FirstName=json["FirstName"].string ?? ""
+        LastName=json["LastName"].string ?? ""
+    }
 }

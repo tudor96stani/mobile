@@ -11,8 +11,15 @@ import UIKit
 class BooksTableViewController: UITableViewController {
 
     @IBOutlet var viewModel: BookListViewModel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Refresh data setup
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
         
         //hide back button
         let backButton = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: #selector(Logout(sender:)))
@@ -27,6 +34,10 @@ class BooksTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        ReloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,6 +109,17 @@ class BooksTableViewController: UITableViewController {
         UserDefaults.standard.removeObject(forKey: "username")
         UserDefaults.standard.removeObject(forKey: "userrole")
         self.navigationController?.popViewController(animated: true);
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl){
+        ReloadData()
+        refreshControl.endRefreshing()
+    }
+    
+    func ReloadData(){
+        viewModel.GetBooks(UserId: UUID(uuidString:UserDefaults.standard.string(forKey:"userid")!)!) {
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - Navigation

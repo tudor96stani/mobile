@@ -9,11 +9,15 @@
 import Foundation
 
 public enum Constants{
-    
+    //MARK: Base and user
     static let BaseURL: String = "http://home-server.go.ro/MobileApi/api/v1/";
     static let LoginURL: String = BaseURL + "users/login";
     static let RegisterURL: String = BaseURL + "users/register";
     
+    //MARK: Books
     static let UserBooksURL: String = BaseURL + "books/user/";
     static let UpdateBookURL: String = BaseURL + "books/update";
+    
+    //MARK: Authors
+    static let AllAuthorsURL: String = BaseURL + "authors"
 }

@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class ApiClient :NSObject{
+    
     func FetchBooks(UserId:String, completion: @escaping ([Book]?)->Void)
     {
         Alamofire.request(Constants.UserBooksURL+UserId).validate()
@@ -61,13 +62,23 @@ class ApiClient :NSObject{
     }
     
     func GetAllAuthors(completion: @escaping ([Author]?) -> Void)
-    {
-        var auth = [Author]()
-        let a1 = Author(id: UUID(uuidString: "5122117d-e0a0-437d-8752-8e11d4e41fee")!, firstname: "Jane", lastname: "Austen")
-        let a2 = Author(id: UUID(uuidString: "be9617bc-2f07-485a-ae00-a24de7d19b08")!, firstname: "Oscar", lastname: "Wilde")
-        auth.append(a1)
-        auth.append(a2)
-        completion(auth)
+    {        
+        Alamofire.request(Constants.AllAuthorsURL).validate()
+            .responseJSON { (response) in
+                switch response.result
+                {
+                case .success(let value):
+                    let json = JSON(value)
+                    var authors = [Author]()
+                    for(_,subJson):(String,JSON) in json
+                    {
+                        authors.append(Author(json: subJson))
+                    }
+                    completion(authors)
+                case .failure( _):
+                    completion(nil)
+                }
+        }
     }
     
     func UpdateBook(id: UUID,title:String,authorid:UUID, completion: @escaping (Book?) -> Void)

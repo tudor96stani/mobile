@@ -19,17 +19,15 @@ class EditBookViewController: UIViewController,UIPickerViewDelegate, UIPickerVie
       
     override  func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+
         AuthorPicker.dataSource=self
         AuthorPicker.delegate=self
-        
-        
-            viewModel.FindAuthors(){
-                self.dataSource = self.viewModel.GetAuthorDataForPicker()
-                self.AuthorPicker.reloadAllComponents()
-            }
-        
-        
-        // Do any additional setup after loading the view.
+        TitleField.text = viewModel.FindBookTitle()
+        viewModel.FindAuthors(){
+            self.dataSource = self.viewModel.GetAuthorDataForPicker()
+            self.AuthorPicker.reloadAllComponents()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,18 +70,17 @@ class EditBookViewController: UIViewController,UIPickerViewDelegate, UIPickerVie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
-        viewModel.UpdateBook(title: TitleField.text!, authorId: dataSource[AuthorPicker.selectedRow(inComponent: 0)].key) {
-            if !self.viewModel.BookIsDefined(){
-                let alertController = UIAlertController(title: "Edit", message:
-                    "There was an error!", preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                self.present(alertController, animated: true, completion: nil)
-            }
+        let authorid = dataSource[AuthorPicker.selectedRow(inComponent: 0)].key
+        viewModel.UpdateBook(title: TitleField.text!, authorId: authorid) {
+//            if !self.viewModel.BookIsDefined(){
+//                let alertController = UIAlertController(title: "Edit", message:
+//                    "There was an error!", preferredStyle: UIAlertControllerStyle.alert)
+//                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+//                self.present(alertController, animated: true, completion: nil)
+//            }
             guard let controller = segue.destination as? DetailsViewController else
             {
                 fatalError("Wrong destination")
-                
             }
             controller.TitleLabel.text=self.TitleField.text!
             controller.AuthorLabel.text = self.dataSource[self.AuthorPicker.selectedRow(inComponent: 0)].value

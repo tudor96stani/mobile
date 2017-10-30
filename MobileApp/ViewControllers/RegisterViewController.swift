@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-class RegisterViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate {
+import MessageUI
+class RegisterViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate,MFMailComposeViewControllerDelegate {
 
     //MARK: Outlets
     @IBOutlet weak var UsernameField: UITextField!
@@ -16,15 +16,16 @@ class RegisterViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     @IBOutlet weak var PasswordField: UITextField!
     @IBOutlet weak var RolePicker: UIPickerView!
     @IBOutlet weak var RoleLabel: UILabel!
+    @IBOutlet weak var SuccessfullLabel: UILabel!
     
     
     @IBOutlet var viewModel: RegisterViewModel!
     let pickerData = ["Viewer","Owner"]
-    
-    
+    let defaultValues = UserDefaults.standard
     //MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         RolePicker.dataSource=self
         RolePicker.delegate=self
         
@@ -73,12 +74,17 @@ class RegisterViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
   
     //MARK: Methods
     func LoginAfterSuccessfulRegistration(user: User)-> Void{
+        self.dismiss(animated: true, completion: nil)
+        
         switch user.Role{
             //                    case 1:
             //                        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewerViewController") as! ViewerViewController
             //                        self.navigationController?.pushViewController(profileViewController, animated: true)
         //                        self.dismiss(animated: false, completion: nil)
         case 2:
+            self.defaultValues.set(user.Id.uuidString,forKey:"userid")
+            self.defaultValues.set(user.Username,forKey:"username")
+            self.defaultValues.set(user.Role,forKey:"userrole")
             let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
             self.navigationController?.pushViewController(profileViewController, animated: true)
             self.dismiss(animated: false, completion: nil)
@@ -100,6 +106,39 @@ class RegisterViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
         self.present(alertController, animated: true, completion: nil)
     }
     
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        
+        mailComposerVC.setToRecipients(["tudor96stani@gmail.com"])
+        mailComposerVC.setSubject("Registration for your application")
+        mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
+        
+        return mailComposerVC
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        controller.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func sendEmail(to dest : String,role: Int, username: String) {
+        self.dismiss(animated: true, completion: nil)
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([dest])
+            let roleName = role == 1 ? "viewer" : "owner"
+            mail.setSubject("Welcome to the BookManagement Society")
+            mail.setMessageBody("<p>Welcome to the Book Management society! Your username is \(username) .You are now a \(roleName)</p>", isHTML: true)
+            self.dismiss(animated: true, completion: nil)
+            present(mail, animated: true)
+        } else {
+            self.DisplayAlert(message: "Could not create email!")
+        }
+    }
+    
     //MARK: Actions
     
     @IBAction func RegisterPress(_ sender: Any) {
@@ -109,7 +148,12 @@ class RegisterViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
                 viewModel.RegisterUser(username: username, password: password, role: selectedRole, completion: { (success) in
                     if success{
                         //Registration successful
-                        self.LoginAfterSuccessfulRegistration(user: self.viewModel.user!)
+                        self.UsernameField.isUserInteractionEnabled=false;
+                        self.PasswordField.isUserInteractionEnabled = false;
+                        self.EmailField.isUserInteractionEnabled=false;
+                        self.RolePicker.isUserInteractionEnabled=false;
+                        self.SuccessfullLabel.isHidden=false;
+                        self.sendEmail(to: self.EmailField.text!, role: selectedRole,username: self.UsernameField.text!)
                     }else{
                         self.DisplayAlert(message: self.viewModel.errorMessage!)
                     }
