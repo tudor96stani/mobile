@@ -1,0 +1,18 @@
+﻿<Properties StartupConfiguration="{27862AD1-1225-4E3C-BCA0-A09F79304736}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WebApi/Models/User.cs">
+    <Files>
+      <File FileName="WebApi/Controllers/BooksController.cs" Line="19" Column="35" />
+      <File FileName="WebApi/DAL/EFRepository.cs" Line="53" Column="107" />
+      <File FileName="WebApi/Models/User.cs" Line="2" Column="34" />
+      <File FileName="WebApi/Models/Book.cs" Line="2" Column="34" />
+      <File FileName="WebApi/Models/Author.cs" Line="2" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.WebApi PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

@@ -1,0 +1,61 @@
+/Users/tudorstanila/Projects/MobileApi/WebApi/obj/Debug/WebApi.csproj.CoreCompileInputs.cache
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/WebApi.dll
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/WebApi.pdb
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/EntityFramework.dll
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/EntityFramework.SqlServer.dll
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/Newtonsoft.Json.dll
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/System.Net.Http.Formatting.dll
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/System.Web.Http.dll
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/System.Web.Http.WebHost.dll
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/System.Net.Http.Formatting.xml
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/System.Web.Http.xml
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/System.Web.Http.WebHost.xml
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/Newtonsoft.Json.xml
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/EntityFramework.xml
+/Users/tudorstanila/Projects/MobileApi/WebApi/bin/EntityFramework.SqlServer.xml
+/Users/tudorstanila/Projects/MobileApi/WebApi/obj/Debug/WebApi.dll
+/Users/tudorstanila/Projects/MobileApi/WebApi/obj/Debug/WebApi.pdb
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\WebApi.dll.config
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\WebApi.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\WebApi.pdb
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\EntityFramework.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\EntityFramework.SqlServer.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Newtonsoft.Json.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\System.Net.Http.Formatting.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\System.Web.Http.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\System.Web.Http.WebHost.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\System.Net.Http.Formatting.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\System.Web.Http.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\System.Web.Http.WebHost.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Newtonsoft.Json.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\EntityFramework.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\EntityFramework.SqlServer.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\obj\Debug\WebApi.csprojResolveAssemblyReference.cache
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\obj\Debug\WebApi.csproj.CoreCompileInputs.cache
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\obj\Debug\WebApi.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\obj\Debug\WebApi.pdb
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\obj\Debug\WebApi.Migrations.Createtables.resources
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\obj\Debug\WebApi.csproj.GenerateResource.Cache
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.Security.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Owin.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\System.Web.Http.Owin.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.Security.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\System.Web.Http.Owin.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\obj\Debug\WebApi.Migrations.addedaspnetidentity.resources
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.Cors.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\System.Web.Cors.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.Cors.xml

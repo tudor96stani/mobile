@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="Mobile-Web.config Connection String" description="Mobile Connection String used in web.config by the application to access the database." defaultValue="Data Source=home-server.go.ro;Initial Catalog=MobileDb;User ID=Tudors;Password=Admin1." tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Macbook\\Documents\\Visual\ Studio\ 2017\\Projects\\MobileApi\\WebApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Mobile']/@connectionString" />
+  </parameter>
+</parameters>
