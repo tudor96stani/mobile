@@ -137,7 +137,6 @@
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Controllers\BooksController.cs" />
-    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\ViewModels\AuthorViewModel.cs" />
     <Compile Include="Models\ViewModels\BookUpdateViewModel.cs" />
     <Compile Include="Models\ViewModels\BookViewModel.cs" />

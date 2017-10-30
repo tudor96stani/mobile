@@ -1,2 +1,4 @@
 Web.config
 *.pubxml
+/Backup/*
+/Backup1/*

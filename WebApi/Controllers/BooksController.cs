@@ -10,6 +10,7 @@ using WebApi.Models.ViewModels;
 namespace WebApi.Controllers
 {
     [RoutePrefix("api/v1/books")]
+    [Authorize]
     public class BooksController: ApiController
     {
         private IRepository _repository;
@@ -22,7 +23,8 @@ namespace WebApi.Controllers
         [Route("user/{userId:Guid}")]
         public IEnumerable<BookViewModel> Get(Guid userId)
         {
-            return _repository.GetBooksForUser(userId).Select(x=>new BookViewModel(x)).ToList();
+            var books = _repository.GetBooksForUser(userId);
+            return books.Select(x=>new BookViewModel(x)).ToList();
         }
 
         [Route("{id:Guid}")]

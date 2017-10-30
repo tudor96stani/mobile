@@ -24,34 +24,20 @@ namespace WebApi.Controllers
             
         }
 
-        [Route("check")]
-        [Authorize]
-        public IHttpActionResult GetUserInfo()
-        {
-            var user = User;
-            return Ok(user.Identity.GetUserId());
-        }
-
-        [Route("")]
-        public List<UserBasicInfoViewModel> Get()
-        {
-            return _repository.GetUsers().Select(x=>new UserBasicInfoViewModel(x)).ToList();   
-        }
-
-        [Route("login")]
-        [HttpPost]
-        public IHttpActionResult Login([FromBody]UserLoginViewModel user)
-        {  
-            try
-            {
-                var userResult = _repository.Login(user.Username,user.Password);
-                return Ok(new UserBasicInfoViewModel(userResult));
-            }
-            catch(Exception)
-            {
-                return Unauthorized();
-            }
-        }
+        //[Route("login")]
+        //[HttpPost]
+        //public IHttpActionResult Login([FromBody]UserLoginViewModel user)
+        //{  
+        //    try
+        //    {
+        //        var userResult = _repository.Login(user.Username,user.Password);
+        //        return Ok(new UserBasicInfoViewModel(userResult));
+        //    }
+        //    catch(Exception)
+        //    {
+        //        return Unauthorized();
+        //    }
+        //}
 
         [Route("register")]
         [HttpPost]
@@ -78,15 +64,5 @@ namespace WebApi.Controllers
                 return result;
             }
         }
-
-        [Route("Check")]
-        public IHttpActionResult Token()
-        {
-            return Ok();
-        }
-
-
-
-        
     }
 }

@@ -9,21 +9,11 @@ namespace WebApi.DAL
 {
     public class EFRepository: IRepository
     {
-        private static EFRepository _instance;
 
         public EFRepository()
         {
         }
 
-        public static EFRepository Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new EFRepository();
-                return _instance;
-            }
-        }
 
         public List<User> GetUsers()
         {
