@@ -9,12 +9,118 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import KeychainSwift
 
-class ApiClient :NSObject{
+class ApiClient : NSObject{
+    
+    let keychain = KeychainSwift()
+    let defaultValues = UserDefaults.standard
+    
+    func RefreshTokenIfNecessary(token: String,outercompletion: @escaping () -> Void){
+        
+        let headers : HTTPHeaders = [
+            "Authorization" : "Bearer \(token)"
+        ]
+        Alamofire.request(Constants.RefreshURL,headers:headers).response { (response) in
+            switch response.response?.statusCode{
+                case 200?:
+                    //token still valid
+                    outercompletion()
+                
+                default:
+                    //token no longer valid
+                    
+                    let username = self.keychain.get("username")!
+                    let password = self.keychain.get("password")!
+                    self.Login(username: username, password: password, completion: { (user, message, success) in
+                        if success{
+                            outercompletion()
+                        }
+                    })
+            }
+        }
+    }
+    
+    
+    
+    
+    func Login(username: String,password:String,completion: @escaping (User?,String?,Bool)->Void){
+        let parameters: Parameters = [
+            "username":username,
+            "password":password,
+            "grant_type":"password"
+        ]
+        
+        Alamofire.request(Constants.LoginURL,method:.post,parameters:parameters,encoding: URLEncoding.httpBody).validate()
+            .responseJSON { (response) in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                    let user = User(json: json)
+                    let access_token = json["access_token"].stringValue
+                    self.keychain.set(access_token,forKey:"token")
+                    self.keychain.set(username,forKey:"username")
+                    self.keychain.set(password,forKey:"password")
+                    self.defaultValues.set(json["Id"].stringValue,forKey:"userid")
+                    self.defaultValues.set(json["Role"].stringValue,forKey:"Role")
+                    completion(user,nil,true)
+                case .failure(let error):
+                    //completion(nil,nil,false)
+                    let message : String
+                    if let httpStatusCode = response.response?.statusCode {
+                        switch(httpStatusCode) {
+                        case 400:
+                            message = "Username or password not provided."
+                        case 401:
+                            message = "Incorrect username or password."
+                        default:
+                            message = "There was an error"
+                        }
+                    } else {
+                        message = error.localizedDescription
+                    }
+                    completion(nil,message,false)
+                }
+        }
+    }
+    
+    func Register(username: String,password:String,role:Int, completion: @escaping (User?,String?,Bool)->Void)
+    {
+        let parameters: Parameters = [
+            "username":username,
+            "password":password,
+            "role":role
+        ]
+        Alamofire.request(Constants.RegisterURL,method:.post,parameters:parameters).validate()
+            .responseJSON { (response) in
+                switch response.result
+                {
+                case .success(let value):
+                    let json = JSON(value)
+                    let OK = json["ok"].boolValue
+                    if OK{
+                        //Registration successful
+                        let user = User(json: json["user"])
+                        completion(user,nil,true)
+                    }
+                    else{
+                        //Registration was not successful because the server rejected the User (existing username, etc)
+                        let message = json["message"].stringValue
+                        completion(nil,message,false)
+                    }
+                case .failure( _):
+                    completion(nil,"Server error",false)
+                }
+        }
+    }
     
     func FetchBooks(UserId:String, completion: @escaping ([Book]?)->Void)
     {
-        Alamofire.request(Constants.UserBooksURL+UserId).validate()
+        let token = self.keychain.get("token")
+        let headers : HTTPHeaders = [
+            "Authorization" : "Bearer \(token!)"
+        ]
+        Alamofire.request(Constants.UserBooksURL+UserId,headers:headers).validate()
             .responseJSON { (response) in
                 switch response.result{
                 case .success(let value):
@@ -27,36 +133,6 @@ class ApiClient :NSObject{
                     completion(books)
                 case .failure( _):
                     completion(nil)
-                }
-        }
-    }
-    
-    func Register(username: String,password:String,role:Int, completion: @escaping (User?,String?,Bool)->Void)
-    {
-        let parameters: Parameters = [
-            "Username":username,
-            "Password":password,
-            "Role":role
-        ]
-        Alamofire.request(Constants.RegisterURL,method:.post,parameters:parameters).validate()
-            .responseJSON { (response) in
-                switch response.result
-                {
-                case .success(let value):
-                    let json = JSON(value)
-                    let OK = json["Ok"].boolValue
-                    if OK{
-                        //Registration successful
-                        let user = User(json: json["User"])
-                        completion(user,nil,true)
-                    }
-                    else{
-                        //Registration was not successful because the server rejected the User (existing username, etc)
-                        let message = json["Message"].stringValue
-                        completion(nil,message,false)
-                    }
-                case .failure( _):
-                    completion(nil,"Server error",false)
                 }
         }
     }
@@ -83,14 +159,16 @@ class ApiClient :NSObject{
     
     func UpdateBook(id: UUID,title:String,authorid:UUID, completion: @escaping (Book?) -> Void)
     {
-            //make the call to the api
-            //completion(nil)
+        let token = self.keychain.get("token")
         let parameters: Parameters = [
-            "Id":id.uuidString,
-            "Title":title,
-            "AuthorId":authorid.uuidString
+            "id":id.uuidString,
+            "title":title,
+            "authorId":authorid.uuidString
         ]
-        Alamofire.request(Constants.UpdateBookURL,method:.post,parameters: parameters).validate()
+        let headers : HTTPHeaders = [
+            "Authorization" : "Bearer \(token!)"
+        ]
+        Alamofire.request(Constants.UpdateBookURL,method:.post,parameters: parameters,headers:headers).validate()
             .responseJSON { (response) in
                 switch response.result
                 {
@@ -103,5 +181,5 @@ class ApiClient :NSObject{
                 }
         }
     }
-}
 
+}

@@ -18,6 +18,8 @@
 		4B5252941F9CAF8A0058769C /* MobileApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B5252921F9CAF8A0058769C /* MobileApp.xcdatamodeld */; };
 		4B5252961F9CAF8A0058769C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B5252951F9CAF8A0058769C /* Assets.xcassets */; };
 		4B5252991F9CAF8A0058769C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B5252971F9CAF8A0058769C /* LaunchScreen.storyboard */; };
+		4B666BB21FA90D3000DDBFEA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B666BB11FA90D3000DDBFEA /* LoginViewModel.swift */; };
+		4B666BB61FA9300F00DDBFEA /* ExtensionMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B666BB51FA9300F00DDBFEA /* ExtensionMethods.swift */; };
 		4B6C20501F9CD68D00B74B21 /* OwnerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C204F1F9CD68D00B74B21 /* OwnerListViewController.swift */; };
 		4B6C20531F9CD83100B74B21 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C20521F9CD83100B74B21 /* Constants.swift */; };
 		4B6C20561F9CD85D00B74B21 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C20551F9CD85D00B74B21 /* User.swift */; };
@@ -46,6 +48,8 @@
 		4B5252951F9CAF8A0058769C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B5252981F9CAF8A0058769C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B52529A1F9CAF8A0058769C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B666BB11FA90D3000DDBFEA /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		4B666BB51FA9300F00DDBFEA /* ExtensionMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionMethods.swift; sourceTree = "<group>"; };
 		4B6C204F1F9CD68D00B74B21 /* OwnerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerListViewController.swift; sourceTree = "<group>"; };
 		4B6C20521F9CD83100B74B21 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4B6C20551F9CD85D00B74B21 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 			children = (
 				4B6C20521F9CD83100B74B21 /* Constants.swift */,
 				4B6C20571F9D23A600B74B21 /* ApiClient.swift */,
+				4B666BB51FA9300F00DDBFEA /* ExtensionMethods.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 				4B0438B91F9EA67900A523A5 /* RegisterViewModel.swift */,
 				4B4ECA991F9FBE22004566F4 /* BookDetailsViewModel.swift */,
 				4BF94C131F9FD76C0090A53B /* BookEditViewModel.swift */,
+				4B666BB11FA90D3000DDBFEA /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -280,11 +286,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MobileApp/Pods-MobileApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,9 +321,11 @@
 				4B0438BA1F9EA67900A523A5 /* RegisterViewModel.swift in Sources */,
 				4B52528C1F9CAF890058769C /* AppDelegate.swift in Sources */,
 				4BF94C141F9FD76C0090A53B /* BookEditViewModel.swift in Sources */,
+				4B666BB61FA9300F00DDBFEA /* ExtensionMethods.swift in Sources */,
 				4B0438B81F9EA24800A523A5 /* RegisterViewController.swift in Sources */,
 				4B6C20501F9CD68D00B74B21 /* OwnerListViewController.swift in Sources */,
 				4B5252941F9CAF8A0058769C /* MobileApp.xcdatamodeld in Sources */,
+				4B666BB21FA90D3000DDBFEA /* LoginViewModel.swift in Sources */,
 				4B4ECA981F9FBA3F004566F4 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

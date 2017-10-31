@@ -7,14 +7,24 @@
 //
 
 import UIKit
-
+import KeychainSwift
 class BooksTableViewController: UITableViewController {
 
     @IBOutlet var viewModel: BookListViewModel!
-    
+    let keychain = KeychainSwift()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Design
+        let backgroundImage = UIImage(named: "table_background.png")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+        tableView.tableFooterView = UIView()
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = imageView.bounds
+        imageView.addSubview(blurView)
         
         //Refresh data setup
         let refreshControl = UIRefreshControl()
@@ -64,6 +74,7 @@ class BooksTableViewController: UITableViewController {
         // Configure the cell...
         cell.TitleLabel?.text=viewModel.BookTitleToDisplay(for: indexPath)
         cell.AuthorLabel?.text=viewModel.BookAuthorIdToDisplay(for: indexPath)
+        cell.backgroundColor = .clear
         return cell
     }
  
@@ -105,10 +116,22 @@ class BooksTableViewController: UITableViewController {
     
     //MARK: Methods
     @objc func Logout(sender: UIBarButtonItem) {
-        UserDefaults.standard.removeObject(forKey: "userid")
-        UserDefaults.standard.removeObject(forKey: "username")
-        UserDefaults.standard.removeObject(forKey: "userrole")
-        self.navigationController?.popViewController(animated: true);
+        self.keychain.delete("token")
+        self.keychain.delete("username")
+        self.keychain.delete("password")
+        UserDefaults.standard.removeObject(forKey:"userid")
+        UserDefaults.standard.removeObject(forKey:"Role")
+        if (self.navigationController?.popViewController(animated: true)) != nil{
+            
+        }
+        else{
+            let appdelegate = UIApplication.shared.delegate as! AppDelegate
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let ViewController = mainStoryboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+            let nav = UINavigationController(rootViewController: ViewController)
+            appdelegate.window!.rootViewController = nav
+        }
+        
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl){

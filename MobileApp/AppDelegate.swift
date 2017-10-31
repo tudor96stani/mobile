@@ -8,15 +8,27 @@
 
 import UIKit
 import CoreData
+import KeychainSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var keychain = KeychainSwift()
+    var apiClient = ApiClient()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if let token = keychain.get("token"){
+            apiClient.RefreshTokenIfNecessary(token:token) {
+                let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
+                let homeviewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
+                
+                let nav = UINavigationController(rootViewController: homeviewcontroller)
+                self.window!.rootViewController = nav
+                self.window!.makeKeyAndVisible()
+            }
+        }
         return true
     }
 

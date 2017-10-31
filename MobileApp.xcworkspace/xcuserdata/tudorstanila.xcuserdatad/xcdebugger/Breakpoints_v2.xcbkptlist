@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MobileApp/ViewControllers/RegisterViewController.swift"
-            timestampString = "531070512.340528"
+            filePath = "MobileApp/ViewControllers/BooksTableViewController.swift"
+            timestampString = "531182926.978742"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "pickerView(_:titleForRow:forComponent:)"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "Logout(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,43 +25,75 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MobileApp/ViewControllers/EditBookViewController.swift"
-            timestampString = "530642511.18409"
+            filePath = "MobileApp/Utils/ApiClient.swift"
+            timestampString = "531182926.979747"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "prepare(for:sender:)"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "Register(username:password:role:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MobileApp/Utils/ApiClient.swift"
+            timestampString = "531182926.980308"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "Register(username:password:role:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MobileApp/ViewControllers/RegisterViewController.swift"
+            timestampString = "531179872.055453"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "RegisterPress(_:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "MobileApp.EditBookViewController.prepare(for: __ObjC.UIStoryboardSegue, sender: Swift.Optional&lt;Any&gt;) -&gt; ()"
+                  symbolName = "MobileApp.RegisterViewController.RegisterPress(Any) -&gt; ()"
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewControllers/EditBookViewController.swift"
-                  timestampString = "531068767.252822"
+                  urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewControllers/RegisterViewController.swift"
+                  timestampString = "531179310.708382"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "580">
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "1020">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in MobileApp.EditBookViewController.prepare(for: __ObjC.UIStoryboardSegue, sender: Swift.Optional&lt;Any&gt;) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in MobileApp.RegisterViewController.RegisterPress(Any) -&gt; ()"
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewControllers/EditBookViewController.swift"
-                  timestampString = "531068767.255133"
+                  urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewControllers/RegisterViewController.swift"
+                  timestampString = "531179310.710615"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
                   offsetFromSymbolStart = "32">
                </Location>
             </Locations>
@@ -73,46 +105,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MobileApp/Utils/ApiClient.swift"
-            timestampString = "530642511.185975"
+            filePath = "MobileApp/ViewModels/RegisterViewModel.swift"
+            timestampString = "531179449.422501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "UpdateBook(id:title:authorid:completion:)"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "RegisterUser(username:password:role:completion:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MobileApp/Utils/ApiClient.swift"
-            timestampString = "530642511.186299"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "UpdateBook(id:title:authorid:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MobileApp/ViewControllers/RegisterViewController.swift"
-            timestampString = "531070512.340639"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "LoginAfterSuccessfulRegistration(user:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MobileApp.RegisterViewModel.RegisterUser(username: Swift.String, password: Swift.String, role: Swift.Int, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "MobileApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewModels/RegisterViewModel.swift"
+                  timestampString = "531179449.460719"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;MobileApp.User&gt;, Swift.Optional&lt;Swift.String&gt;, Swift.Bool) -&gt; () in MobileApp.RegisterViewModel.RegisterUser(username: Swift.String, password: Swift.String, role: Swift.Int, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "MobileApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewModels/RegisterViewModel.swift"
+                  timestampString = "531179449.462235"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

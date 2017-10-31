@@ -8,4 +8,5 @@ target 'MobileApp' do
   # Pods for MobileApp
     pod 'SwiftyJSON'
     pod 'Alamofire', '~> 4.5'
+    pod 'KeychainSwift', '~> 10.0'
 end

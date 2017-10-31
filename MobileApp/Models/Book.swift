@@ -28,10 +28,10 @@ class Book{
     }
     
     init(json: JSON){
-        Id=UUID(uuidString:json["Id"].string ?? "00000000-0000-0000-0000-000000000000")!
-        Title = json["Title"].string ?? ""
-        AuthorId = UUID(uuidString:json["Author"]["Id"].string ?? "00000000-0000-0000-0000-000000000000")!
-        self.BookAuthor = Author(id: UUID(uuidString:json["Author"]["Id"].string ?? "00000000-0000-0000-0000-000000000000")!,firstname: json["Author"]["FirstName"].string ?? "",lastname: json["Author"]["LastName"].string ?? "")
+        Id=UUID(uuidString:json["id"].string ?? "00000000-0000-0000-0000-000000000000")!
+        Title = json["title"].string ?? ""
+        AuthorId = UUID(uuidString:json["author"]["id"].string ?? "00000000-0000-0000-0000-000000000000")!
+        self.BookAuthor = Author(id: UUID(uuidString:json["author"]["id"].string ?? "00000000-0000-0000-0000-000000000000")!,firstname: json["author"]["firstName"].string ?? "",lastname: json["author"]["lastName"].string ?? "")
         
     }
 }

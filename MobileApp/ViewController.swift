@@ -9,22 +9,36 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-
+import KeychainSwift
 class ViewController: UIViewController,UITextFieldDelegate {
     
     //MARK: Outlets
     @IBOutlet weak var UsernameField: UITextField!
     @IBOutlet weak var PasswordField: UITextField!
+    @IBOutlet var viewModel : LoginViewModel!
     
     //MARK: Fields
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     let defaultValues = UserDefaults.standard
+    let keychain = KeychainSwift()
     
     //MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        //Some design things
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent=true;
+        self.navigationController?.view.backgroundColor = .clear
+        PasswordField.text=""
+        
+        //UsernameField.setBottomBorder()
+        //PasswordField.setBottomBorder()
+        UsernameField.backgroundColor = .clear
+        PasswordField.backgroundColor = .clear
+        
+        //Preparing textfields to respond to the "Return" button
         UsernameField.delegate=self
         PasswordField.delegate=self
         UsernameField.tag=0
@@ -34,7 +48,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
         
-        PasswordField.text=""
+        
 
     }
     
@@ -47,10 +61,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        self.view.endEditing(true)
-//        return false
-//    }
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
@@ -65,26 +76,20 @@ class ViewController: UIViewController,UITextFieldDelegate {
         return false
     }
     
-    //MARK: Actions
-    
-    @IBAction func RegisterBtnPress(_ sender: Any) {
-        let registerViewController = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
-        self.navigationController?.pushViewController(registerViewController, animated: true)
-        self.dismiss(animated: false, completion: nil)
+    func DisplayAlert(message text: String) -> Void
+    {
+        let alertController = UIAlertController(title: "Login", message:
+            text, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    
-    @IBAction func LoginBtnPress(_ sender: Any) {
+    func Login(username: String,password: String){
+        /*
         let parameters: Parameters = [
-            "Username":UsernameField.text!,
-            "Password":PasswordField.text!
+            "Username":username,
+            "Password":password
         ]
-        activityIndicator.center = self.view.center;
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
         Alamofire.request(Constants.LoginURL,method:.post,parameters:parameters)
             .validate()
             .responseJSON { response in
@@ -100,6 +105,9 @@ class ViewController: UIViewController,UITextFieldDelegate {
                     self.defaultValues.set(user.Id.uuidString,forKey:"userid")
                     self.defaultValues.set(user.Username,forKey:"username")
                     self.defaultValues.set(user.Role,forKey:"userrole")
+                    self.defaultValues.set(true,forKey:"LoggedIn")
+                    self.keychain.set(username,forKey:"username")
+                    self.keychain.set(password,forKey:"password")
                     switch user.Role{
                     case 1:
                         let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
@@ -140,7 +148,52 @@ class ViewController: UIViewController,UITextFieldDelegate {
                     }
                     
                 }
+        }*/
+        self.viewModel.Login(username: username, password: password) { (success) in
+            self.activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
+            if success{
+                
+                switch self.viewModel.user!.Role{
+                case 1:
+                    let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
+                    self.navigationController?.pushViewController(profileViewController, animated: true)
+                    self.dismiss(animated: false, completion: nil)
+                case 2:
+                    let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
+                    self.navigationController?.pushViewController(profileViewController, animated: true)
+                    self.dismiss(animated: false, completion: nil)
+                default:
+                    //Undefined role -> not acceptable
+                    let alertController = UIAlertController(title: "Login", message:
+                        "There was an error!", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            } else {
+                self.DisplayAlert(message: self.viewModel.errorMessage!)
+            }
         }
+    }
+    
+    //MARK: Actions
+    
+    @IBAction func RegisterBtnPress(_ sender: Any) {
+        let registerViewController = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        self.navigationController?.pushViewController(registerViewController, animated: true)
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    
+    @IBAction func LoginBtnPress(_ sender: Any) {
+        
+        activityIndicator.center = self.view.center;
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        Login(username:UsernameField.text!,password:PasswordField.text!)
         
         
         
