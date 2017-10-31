@@ -146,6 +146,7 @@
     <Compile Include="Models\ViewModels\UserRegisterViewModel.cs" />
     <Compile Include="Security\SecurePasswordHasher.cs" />
     <Compile Include="Security\SimpleAuthorizationServerProvider.cs" />
+    <Compile Include="Security\SimpleRefreshTokenProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710211807067_Create tables.resx">

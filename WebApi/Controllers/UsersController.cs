@@ -20,24 +20,17 @@ namespace WebApi.Controllers
       
         public UsersController()
         {
-            _repository = EFRepository.Instance;
+            _repository = new EFRepository();
             
         }
 
-        //[Route("login")]
-        //[HttpPost]
-        //public IHttpActionResult Login([FromBody]UserLoginViewModel user)
-        //{  
-        //    try
-        //    {
-        //        var userResult = _repository.Login(user.Username,user.Password);
-        //        return Ok(new UserBasicInfoViewModel(userResult));
-        //    }
-        //    catch(Exception)
-        //    {
-        //        return Unauthorized();
-        //    }
-        //}
+        [Authorize]
+        [Route("verify")]
+        [HttpGet]
+        public IHttpActionResult Check()
+        {
+            return Ok();
+        }
 
         [Route("register")]
         [HttpPost]

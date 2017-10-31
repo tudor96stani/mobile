@@ -32,6 +32,7 @@ namespace WebApi.App_Start
                 TokenEndpointPath=new PathString("/token"),
                 AccessTokenExpireTimeSpan=TimeSpan.FromMinutes(60),
                 Provider= new SimpleAuthorizationServerProvider()
+                //RefreshTokenProvider = new SimpleRefreshTokenProvider()
             };
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());

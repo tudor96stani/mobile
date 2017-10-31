@@ -13,9 +13,23 @@ namespace WebApi.Security
     public class SimpleAuthorizationServerProvider: OAuthAuthorizationServerProvider
     {
         private readonly EFRepository _repo = new EFRepository();
+
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             context.Validated();
+            // validate client credentials (demo)
+            // should be stored securely (salted, hashed, iterated)
+            /*
+            string id, secret;
+            if (context.TryGetBasicCredentials(out id, out secret))
+            {
+                if (secret == "secret")
+                {
+                    // need to make the client_id available for later security checks
+                    context.OwinContext.Set<string>("as:client_id", id);
+                    context.Validated();
+                }
+            }*/
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -27,46 +41,46 @@ namespace WebApi.Security
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
-            /*
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("Username", context.UserName));
-            identity.AddClaim(new Claim("Id", user.Id.ToString()));
-            identity.AddClaim(new Claim("Role", user.Role.ToString()));
-            var props = new AuthenticationProperties(new Dictionary<string, string>
-                {
-                    {
-                        "Username", context.UserName
-                    },
-                    {
-                        "Id", user.Id.ToString()
-                    },
-                    {
-                    "Role", user.Role.ToString()
-                    }
-                });
-            var ticket = new AuthenticationTicket(identity, props);
-            
-            context.Validated(ticket);*/
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("Username", context.UserName));
-            identity.AddClaim(new Claim("Id", user.Id.ToString()));
-            identity.AddClaim(new Claim("Role", user.Role.ToString()));
-            List<Claim> roles = identity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
-            AuthenticationProperties properties = CreateProperties(user.Username,user.Id.ToString(),user.Role);
-
+            string role = user.Role == 1 ? "viewer" : "owner";
+            identity.AddClaim(new Claim(ClaimTypes.Role, role));
+            AuthenticationProperties properties = CreateProperties(user.Username,user.Id.ToString(),user.Role,context.ClientId);
             AuthenticationTicket ticket = new AuthenticationTicket(identity, properties);
             context.Validated(ticket);
-            //context.Request.Context.Authentication.SignIn(cookiesIdentity);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName, string id,int role)
+        /*
+        public override async Task GrantRefreshToken(OAuthGrantRefreshTokenContext context)
+        {
+            var originalClient = context.Ticket.Properties.Dictionary["as:client_id"];
+            var currentClient = context.OwinContext.Get<string>("as:client_id");
+
+            // enforce client binding of refresh token
+            if (originalClient != currentClient)
+            {
+                context.Rejected();
+                return;
+            }
+
+            // chance to change authentication ticket for refresh token requests
+            var newId = new ClaimsIdentity(context.Ticket.Identity);
+            newId.AddClaim(new Claim("newClaim", "refreshToken"));
+
+            var newTicket = new AuthenticationTicket(newId, context.Ticket.Properties);
+            context.Validated(newTicket);
+        }
+        */
+
+
+        public static AuthenticationProperties CreateProperties(string userName, string id,int role,string clientid)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
-        {
-            { "Username", userName },
-            {"Role",role.ToString()},
-                {"Id",id }
-        };
+            {
+                { "Username", userName },
+                { "Role", role.ToString()},
+                { "Id", id }
+                //{ "as:client_id", clientid }
+            };
             return new AuthenticationProperties(data);
         }
 
@@ -76,7 +90,6 @@ namespace WebApi.Security
             {
                 context.AdditionalResponseParameters.Add(property.Key, property.Value);
             }
-
             return Task.FromResult<object>(null);
         }
     }

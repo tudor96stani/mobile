@@ -30,11 +30,16 @@ namespace WebApi.Controllers
         [Route("{id:Guid}")]
         public BookViewModel GetBook(Guid id)
         {
-            return new BookViewModel(_repository.GetBookById(id));
+            var book = _repository.GetBookById(id);
+            if (book != null)
+                return new BookViewModel(book);
+            else
+                return null;
         }
 
         [HttpPost]
         [Route("update")]
+        [Authorize(Roles ="owner")]
         public BookViewModel UpdateBook([FromBody] BookUpdateViewModel book)
         {
             var BookObj = new Book()

@@ -10,6 +10,7 @@ using WebApi.Models.ViewModels;
 namespace WebApi.Controllers
 {
     [RoutePrefix("api/v1/authors")]
+    [AllowAnonymous]
     public class AuthorsController : ApiController
     {
 
