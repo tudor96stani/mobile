@@ -7,11 +7,19 @@ import {
   Button,
   FlatList,
   AsyncStorage,
-  Alert
+  Alert,
+  Icon,
+  ListItem,
+  TouchableOpacity
 } from "react-native";
 import * as URLS from "../Utils/ApiClient";
+import ApiClient from "../Utils/ApiClient";
+const LogoutText = "Log out";
 // create a component
 class BookList extends Component {
+  static navigationOptions = {
+
+  };
   constructor(props) {
     super(props);
 
@@ -31,79 +39,33 @@ class BookList extends Component {
   }
 
   componentDidMount() {
-    /*
-      const id =  AsyncStorage.getItem('userid').then((r)=>{}).done();
-      const token =  AsyncStorage.getItem('token').then((r)=>{}).done();
-      AsyncStorage.multiGet
-      const headers = 
-      
-      fetch(url,{
-          method : 'GET',
-          headers:headers
-      })
-      .then((response) => {
-          if (response.status >= 200 && response.status < 300)
-            return response;
-            else{
-                let error = new Error(response.statusText);
-          error.message = "Error";
-          let code = response.status;
-          console.log("Status :" + code);
-          error.response = response;
-          throw error;
-            }
-      })*/
-
-    AsyncStorage.getItem("userid").then(userid => {
-      this.setState({ userid: userid });
-      AsyncStorage.getItem("token").then(token => {
-        const headers = {
-          Authorization: "Bearer " + token
-        };
-        const url = URLS.GET_BOOKS_URL + this.state.userid;
-        this.setState({ token: token });
-        fetch(url, {
-          method: "GET",
-          headers: {
-            Authorization: "Bearer " + this.state.token
-          }
-        })
-          .then(response => {
-            if (response.status >= 200 && response.status < 300)
-              return response;
-            else {
-              let error = new Error(response.statusText);
-              //error.message = "Error";
-              let code = response.status;
-              console.log("Status :" + code);
-              error.response = response;
-              throw error;
-            }
-          })
-          .then(response => response.json())
-          .then(res => {
-            this.setState({ dataSource: res });
-          })
-          .catch(e => {
-            Alert.alert(e.message);
-          })
-          .done();
-      });
+    ApiClient.fetchBooks().then(books => {
+      if (books != null) {
+        this.setState({ dataSource: books });
+      }
     });
   }
 
+  selectItem(authid, fn) {
+    Alert.alert(fn);
+  }
+
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <FlatList
           data={this.state.dataSource}
           renderItem={({ item }) => (
-            <View style={styles.cell}>
+            <TouchableOpacity
+              style={styles.cell}
+              onPress={() => navigate("BookDetails", { book: item })}
+            >
               <Text style={styles.text}>{item.title}</Text>
               <Text style={styles.text}>
                 {item.author.firstName} {item.author.lastName}
               </Text>
-            </View>
+            </TouchableOpacity>
           )}
           keyExtractor={(item, index) => index}
         />
@@ -132,7 +94,7 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 5,
     backgroundColor: "rgba(255,255,255,0.5)",
-    height:50
+    height: 50
   }
 });
 

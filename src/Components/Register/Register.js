@@ -1,3 +1,4 @@
+//import liraries
 import React, { Component } from "react";
 import {
   View,
@@ -7,51 +8,38 @@ import {
   TouchableOpacity,
   Button,
   AsyncStorage,
-  Alert
+  Alert,
+  Picker
 } from "react-native";
+import * as URLS from "../Utils/ApiClient";
 import ApiClient from '../Utils/ApiClient'
-
-import * as Constants from "../Utils/ApiClient";
-import * as StorageKeys from "../Utils/Constants";
 // create a component
-export default class Login extends Component {
+class Register extends Component {
   static navigationOptions = {
-    header:null
-  }
+    title: "Register",
+    headerStyle: { backgroundColor: "#2c3e50" },
+    headerTitleStyle: { color: "white" }
+  };
   constructor(props) {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      email: "",
+      role: 1
     };
   }
-  componentDidMount() {
-    this._loadInitialState().done();
-  }
 
-  _loadInitialState = async () => {
-    //verify if the user already logged in
-    var value = await AsyncStorage.getItem('userid');
-    if (value != null) {
-      ApiClient.refresh().then(x => {
-        this.props.navigation.navigate("BookList");
-    });
-      
-    }
-  };
-
-  Login = () => {
-    // var params = {
-    //   grant_type: "password",
-    //   username: this.state.username,
-    //   password: this.state.password
+  RegisterClick = () => {
+    // const username = this.state.username;
+    // const password = this.state.password;
+    // const email = this.state.email;
+    // const role = this.state.role;
+    // var params ={
+    //   username: username,
+    //   password: password,
+    //   role: role
     // };
-    // var formData = new FormData();
-
-    // for (var k in params) {
-    //   formData.append(k, params[k]);
-    // }
-
     // var formBody = [];
     // for (var property in params) {
     //   var encodedKey = encodeURIComponent(property);
@@ -62,13 +50,13 @@ export default class Login extends Component {
     // var headers = {
     //   "Content-Type": "application/x-www-form-urlencoded"
     // };
-    // var request = {
+    // console.log("formBody= "+formBody);
+    // console.log("URL="+ URLS.REGISTER_URL);
+    // fetch(URLS.REGISTER_URL, {
     //   method: "POST",
     //   headers: headers,
     //   body: formBody
-    // };
-    // console.log(formBody);
-    // fetch(Constants.LOGIN_URL, request)
+    // })
     //   .then(response => {
     //     if (response.status >= 200 && response.status < 300) {
     //       console.log("response status code == 200");
@@ -83,53 +71,40 @@ export default class Login extends Component {
     //       error.message = "Error";
     //       let code = response.status;
     //       console.log("Status :" + code);
+    //       console.log(response.statusText);
     //       error.response = response;
     //       throw error;
     //     }
     //   })
     //   .then(response => response.json())
     //   .then(res => {
-    //     var id = res.Id;
-    //     var username = res.Username;
-    //     var token = res.access_token;
-    //     var role = res.role;
-    //     this.SaveInfo(username, this.state.password, token, id,role);
-    //     this.props.navigation.navigate("BookList");
+    //     if (res.ok===true) {
+    //       Alert.alert("Account successfully created, username: " + res.user.username);
+    //       this.props.navigation.goBack();
+    //     } else {
+    //       Alert.alert("ERROR: " + res.message);
+    //       console.log(res.message)
+    //     }
     //   })
-    //   .catch(e => {
-    //     Alert.alert(e.message);
-    //     console.log(e.message);
+    //   .catch(er => {
+    //     console.log(er.message);
     //   })
     //   .done();
-    ApiClient.login(this.state.username,this.state.password)
-    .then(result =>{
-      if (result === "OK")
-        this.props.navigation.navigate("BookList");
-      else{
-        //Alert.alert("There was ane error");
-        console.log("Cacat","Cacat");
-      }
-    });
+    ApiClient.register(this.state.username,this.state.password,this.state.role)
+        .then(result=>{
+            if(result==="OK"){
+                Alert.alert("Account successfully created " );
+               this.props.navigation.goBack();
+            }else{
+                Alert.alert("ERROR: " + result);
+                console.log(result);
+            }
+        })
   };
-
-  SaveInfo = async (username, password, token, id,role) => {
-    await AsyncStorage.setItem("userid", String(id));
-    await AsyncStorage.setItem("username", String(username));
-    await AsyncStorage.setItem("token", String(token));
-    await AsyncStorage.setItem("password", String(password));
-    await AsyncStorage.setItem("role", String(role));
-  };
-
-  RegisterClick = () =>{
-    this.props.navigation.navigate("Register");
-  }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.labelText}>
-            LOGIN 
-        </Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
@@ -144,6 +119,17 @@ export default class Login extends Component {
 
         <TextInput
           style={styles.input}
+          autoCapitalize="none"
+          onChangeText={email => this.setState({ email })}
+          autoCorrect={false}
+          keyboardType="default"
+          returnKeyType="next"
+          placeholder="email"
+          placeholderTextColor="rgba(225,225,225,0.7)"
+        />
+
+        <TextInput
+          style={styles.input}
           returnKeyType="go"
           ref={input => (this.passwordInput = input)}
           onChangeText={password => this.setState({ password })}
@@ -151,11 +137,19 @@ export default class Login extends Component {
           placeholderTextColor="rgba(225,225,225,0.7)"
           secureTextEntry
         />
+        <Picker
+          selectedValue={this.state.role}
+          onValueChange={(itemValue, itemIndex) =>
+            this.setState({ role: itemValue })}
+        >
+          <Picker.Item label="Viewer" value="1" />
+          <Picker.Item label="Owner" value="2" />
+        </Picker>
 
-        <TouchableOpacity style={styles.buttonContainer} onPress={this.Login}>
-          <Text style={styles.buttonText}>LOGIN</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonContainer} onPress={this.RegisterClick}>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={this.RegisterClick}
+        >
           <Text style={styles.buttonText}>REGISTER</Text>
         </TouchableOpacity>
       </View>
@@ -166,9 +160,9 @@ export default class Login extends Component {
 // define your styles
 const styles = StyleSheet.create({
   container: {
-    paddingTop:150,
-    padding: 20,
     flex: 1,
+    paddingTop: 50,
+    padding: 20,
     backgroundColor: "#2c3e50"
   },
   input: {
@@ -181,18 +175,21 @@ const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: "#2980b6",
     paddingVertical: 15,
-    marginTop:30
+    marginTop: 30
   },
   buttonText: {
     color: "#fff",
     textAlign: "center",
     fontWeight: "700"
   },
-  labelText:{
-    color:'white',
-    textAlign:'center',
-    fontWeight:'600',
-    paddingBottom:50,
-    fontSize:40
+  labelText: {
+    color: "white",
+    textAlign: "center",
+    fontWeight: "600",
+    paddingBottom: 50,
+    fontSize: 40
   }
 });
+
+//make this component available to the app
+export default Register;
