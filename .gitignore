@@ -2,3 +2,4 @@ Web.config
 *.pubxml
 /Backup/*
 /Backup1/*
+/WebApi/logs/*

@@ -59,3 +59,6 @@ C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\obj\Debu
 C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.Cors.dll
 C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\System.Web.Cors.dll
 C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.Cors.xml
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\NLog.config
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\NLog.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\NLog.xml

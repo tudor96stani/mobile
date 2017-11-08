@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,6 +15,7 @@ namespace WebApi.Controllers
     public class BooksController: ApiController
     {
         private IRepository _repository;
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
         public BooksController()
         {
             _repository = new EFRepository();
@@ -23,7 +25,9 @@ namespace WebApi.Controllers
         [Route("user/{userId:Guid}")]
         public IEnumerable<BookViewModel> Get(Guid userId)
         {
+            Logger.Trace("BooksController/Get Entered method, userId={0}", userId);
             var books = _repository.GetBooksForUser(userId);
+            Logger.Trace("BooksController/Get Found {0} books for userId={1}", books.Count, userId);
             return books.Select(x=>new BookViewModel(x)).ToList();
         }
 
@@ -34,7 +38,10 @@ namespace WebApi.Controllers
             if (book != null)
                 return new BookViewModel(book);
             else
+            {
+                Logger.Warn("BooksController/GetBook DB returned null for bookId={0}", id);
                 return null;
+            }
         }
 
         [HttpPost]
@@ -42,6 +49,7 @@ namespace WebApi.Controllers
         [Authorize(Roles ="owner")]
         public BookViewModel UpdateBook([FromBody] BookUpdateViewModel book)
         {
+            Logger.Trace("BooksController/UpdateBook bookId={0},title={1},authorId={2}",book.Id.ToString(), book.Title, book.AuthorId.ToString());
             var BookObj = new Book()
             {
                 Id = book.Id,
@@ -51,8 +59,16 @@ namespace WebApi.Controllers
             var updatedBook = _repository.UpdateBook(BookObj);
             BookViewModel result = null;
             if (updatedBook != null)
+            {
                 result = new BookViewModel(updatedBook);
-            return result;
+                return result;
+            }
+            else
+            {
+                Logger.Warn("BooksController/UpdateBook DB returned null for bookId={0}", book.Id);
+                return null;
+            }
+            
         }
     }
 }

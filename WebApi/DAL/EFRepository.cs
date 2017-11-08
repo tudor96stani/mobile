@@ -73,10 +73,12 @@ namespace WebApi.DAL
             using (var dbCtx = new ApplicationDbContext())
             {
                 var db_book = dbCtx.Books.Include(x => x.Author).FirstOrDefault(x => x.Id == book.Id);
+                if (db_book == null)
+                    return null;
                 db_book.Title = book.Title;
                 db_book.AuthorId = book.AuthorId;
                 dbCtx.SaveChanges();
-                return db_book;
+                return dbCtx.Books.Include(x => x.Author).FirstOrDefault(x => x.Id == book.Id);
             }
         }
 

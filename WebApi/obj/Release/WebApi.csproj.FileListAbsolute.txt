@@ -40,3 +40,6 @@ C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Micr
 C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\System.Web.Http.Owin.xml
 C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\obj\Release\WebApi.Migrations.addedaspnetidentity.resources
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\NLog.config
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\NLog.dll
+C:\Users\Macbook\Documents\Visual Studio 2017\Projects\MobileApi\WebApi\bin\NLog.xml
