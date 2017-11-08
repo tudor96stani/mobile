@@ -11,8 +11,8 @@ import {
   Alert,
   Picker
 } from "react-native";
-import * as URLS from "../Utils/ApiClient";
-import ApiClient from '../Utils/ApiClient'
+
+import ApiClient from "../../Utils/ApiClient";
 // create a component
 class Register extends Component {
   static navigationOptions = {
@@ -31,75 +31,19 @@ class Register extends Component {
   }
 
   RegisterClick = () => {
-    // const username = this.state.username;
-    // const password = this.state.password;
-    // const email = this.state.email;
-    // const role = this.state.role;
-    // var params ={
-    //   username: username,
-    //   password: password,
-    //   role: role
-    // };
-    // var formBody = [];
-    // for (var property in params) {
-    //   var encodedKey = encodeURIComponent(property);
-    //   var encodedValue = encodeURIComponent(params[property]);
-    //   formBody.push(encodedKey + "=" + encodedValue);
-    // }
-    // formBody = formBody.join("&");
-    // var headers = {
-    //   "Content-Type": "application/x-www-form-urlencoded"
-    // };
-    // console.log("formBody= "+formBody);
-    // console.log("URL="+ URLS.REGISTER_URL);
-    // fetch(URLS.REGISTER_URL, {
-    //   method: "POST",
-    //   headers: headers,
-    //   body: formBody
-    // })
-    //   .then(response => {
-    //     if (response.status >= 200 && response.status < 300) {
-    //       console.log("response status code == 200");
-    //       return response;
-    //     } else if (response.status === 401) {
-    //       let error = new Error("Incorrect username or password");
-    //       error.message = "Incorrect username or password";
-    //       error.response = response;
-    //       throw error;
-    //     } else {
-    //       let error = new Error(response.statusText);
-    //       error.message = "Error";
-    //       let code = response.status;
-    //       console.log("Status :" + code);
-    //       console.log(response.statusText);
-    //       error.response = response;
-    //       throw error;
-    //     }
-    //   })
-    //   .then(response => response.json())
-    //   .then(res => {
-    //     if (res.ok===true) {
-    //       Alert.alert("Account successfully created, username: " + res.user.username);
-    //       this.props.navigation.goBack();
-    //     } else {
-    //       Alert.alert("ERROR: " + res.message);
-    //       console.log(res.message)
-    //     }
-    //   })
-    //   .catch(er => {
-    //     console.log(er.message);
-    //   })
-    //   .done();
-    ApiClient.register(this.state.username,this.state.password,this.state.role)
-        .then(result=>{
-            if(result==="OK"){
-                Alert.alert("Account successfully created " );
-               this.props.navigation.goBack();
-            }else{
-                Alert.alert("ERROR: " + result);
-                console.log(result);
-            }
-        })
+    ApiClient.register(
+      this.state.username,
+      this.state.password,
+      this.state.role
+    ).then(result => {
+      if (result === "OK") {
+        Alert.alert("Account successfully created ");
+        this.props.navigation.goBack();
+      } else {
+        Alert.alert("ERROR: " + result);
+        console.log(result);
+      }
+    });
   };
 
   render() {

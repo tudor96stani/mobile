@@ -5,14 +5,15 @@ import BookList from "./src/Components/BookList/BookList";
 import { StackNavigator } from "react-navigation";
 import Register from "./src/Components/Register/Register";
 import BookDetails from "./src/Components/BookDetails/BookDetails";
-import ApiClient from "./src/Components/Utils/ApiClient";
-
+import ApiClient from "./src/Utils/ApiClient";
+import BookEdit from "./src/Components/BookEdit/BookEdit";
 const Application = StackNavigator(
   {
     Login: { screen: Login },
     BookList: { screen: BookList },
     Register: { screen: Register },
-    BookDetails: { screen: BookDetails }
+    BookDetails: { screen: BookDetails },
+    BookEdit: { screen: BookEdit }
   },
   {
     headerMode: "screen",
@@ -22,7 +23,6 @@ const Application = StackNavigator(
 
 export default class App extends React.Component {
   render() {
-    
     return <Application />;
   }
 }

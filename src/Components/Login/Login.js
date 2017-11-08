@@ -9,10 +9,10 @@ import {
   AsyncStorage,
   Alert
 } from "react-native";
-import ApiClient from '../Utils/ApiClient'
+import ApiClient from '../../Utils/ApiClient'
 
-import * as Constants from "../Utils/ApiClient";
-import * as StorageKeys from "../Utils/Constants";
+import * as Constants from "../../Utils/ApiClient";
+import * as StorageKeys from "../../Utils/Constants";
 // create a component
 export default class Login extends Component {
   static navigationOptions = {

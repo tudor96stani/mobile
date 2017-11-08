@@ -12,13 +12,15 @@ import {
   ListItem,
   TouchableOpacity
 } from "react-native";
-import * as URLS from "../Utils/ApiClient";
-import ApiClient from "../Utils/ApiClient";
+import * as URLS from "../../Utils/ApiClient";
+import ApiClient from "../../Utils/ApiClient";
 const LogoutText = "Log out";
 // create a component
 class BookList extends Component {
   static navigationOptions = {
-
+    title: "Your books",
+    headerStyle: { backgroundColor: "#2c3e50" },
+    headerTitleStyle: { color: "white" }
   };
   constructor(props) {
     super(props);
@@ -78,7 +80,9 @@ class BookList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20
+    //marginTop: 10,
+    backgroundColor: "#2c3e50",
+    //paddingTop: 10
   },
   rowContainer: {
     flex: 1,
@@ -93,7 +97,7 @@ const styles = StyleSheet.create({
   cell: {
     flex: 1,
     margin: 5,
-    backgroundColor: "rgba(255,255,255,0.5)",
+    backgroundColor: "#95a5a6",
     height: 50
   }
 });

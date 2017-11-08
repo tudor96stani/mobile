@@ -4,7 +4,8 @@ export const LOGIN_URL = "http://home-server.go.ro/MobileApi/token";
 export const GET_BOOKS_URL = BASE_URL + "books/user/";
 export const REGISTER_URL = BASE_URL + "users/register";
 export const VERIFY_URL = BASE_URL + "users/verify";
-
+export const AUTHORS_URL = BASE_URL + "authors";
+export const UPDATE_BOOK_URL = BASE_URL + "books/update";
 export default class ApiClient {
   static username = "";
   static token = "";
@@ -19,7 +20,7 @@ export default class ApiClient {
     });
     if (response.status >= 200 && response.status < 300) return true;
     else {
-      await login();
+      await ApiClient.login();
       return true;
     }
   }
@@ -28,7 +29,7 @@ export default class ApiClient {
   static async login() {
     var username = await AsyncStorage.getItem("username");
     var passw = await AsyncStorage.getItem("password");
-    login(self.username, passw);
+    await ApiClient.login(self.username, passw);
   }
 
   //complete login method
@@ -63,12 +64,12 @@ export default class ApiClient {
       return "ERROR";
     }
 
-    var res = await response.json();
-    var id = res.Id;
-    var username = res.Username;
-    var token = res.access_token;
-    var role = res.role;
-    //SaveInfo(username, password, token, id, role);
+    var jsonRes = await response.json();
+    var id = jsonRes.Id;
+    var username = jsonRes.Username;
+    var token = jsonRes.access_token;
+    var role = jsonRes.role;
+    
     await AsyncStorage.setItem("userid", String(id));
     await AsyncStorage.setItem("username", String(username));
     await AsyncStorage.setItem("token", String(token));
@@ -91,16 +92,15 @@ export default class ApiClient {
     });
 
     if (response.status >= 200 && response.status < 300) {
-      var res = await response.json();
+      var jsonRes = await response.json();
       var a = 4;
-      return res;
+      return jsonRes;
     } else {
       return null;
     }
   }
 
   static async register(username, password, role) {
-    
     var params = {
       username: username,
       password: password,
@@ -124,19 +124,61 @@ export default class ApiClient {
     });
 
     if (response.status >= 200 && response.status < 300) {
-        var res = await response.json();
-        if (res.ok==true){
-            return "OK";
-        }
-        else{
-            return res.message;
-        }
+      var jsonRes = await response.json();
+      if (jsonRes.ok == true) {
+        return "OK";
+      } else {
+        return jsonRes.message;
+      }
     } else {
       return "ERROR";
     }
+  }
 
-    
+  static fetchAuthors = async () => {
+    var response = await fetch(AUTHORS_URL);
+    if(response.status >=200 && response.status <300){
+      var jsonRes = response.json();
+      return jsonRes;
+    }else{
+      return null;
+    }
+  }
 
+  static updateBook = async (bookid,title,authorid) =>{
+    var params = {
+      Id :bookid,
+      Title :title,
+      AuthorId : authorid
+    }
+    var token = await AsyncStorage.getItem("token");
     
+    var formBody = [];
+    for (var property in params) {
+      var encodedKey = encodeURIComponent(property);
+      var encodedValue = encodeURIComponent(params[property]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+    var headers = {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Authorization": "Bearer " + token
+    };
+    console.log(formBody);
+    var response = await fetch(UPDATE_BOOK_URL,{
+      method:'POST',
+      headers:headers,
+      body:formBody
+    });
+    console.log(response);
+    if(response.status >= 200 && response.status < 300){
+      var jsonRes = await response.json();
+      console.log(jsonRes);
+      var a = 5;
+      return {ok:true,res:jsonRes};
+    }else{
+      console.log(response.status);
+      return {ok:false,res:null};
+    }
   }
 }
