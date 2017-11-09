@@ -11,6 +11,7 @@ import {
   Alert,
   Picker
 } from "react-native";
+import Communications from 'react-native-communications';
 
 import ApiClient from "../../Utils/ApiClient";
 // create a component
@@ -31,13 +32,16 @@ class Register extends Component {
   }
 
   RegisterClick = () => {
+    var roleName = this.state.role==='1'?'viewer':'owner'
     ApiClient.register(
       this.state.username,
       this.state.password,
       this.state.role
     ).then(result => {
       if (result === "OK") {
+        Communications.email([this.state.email],null,null,'Welcome to the BookManagement Society','Welcome to the Book Management society! Your username is '+this.state.username);
         Alert.alert("Account successfully created ");
+        
         this.props.navigation.goBack();
       } else {
         Alert.alert("ERROR: " + result);
