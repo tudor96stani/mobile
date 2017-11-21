@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import KeychainSwift
 extension UITextField {
     func setBottomBorder() {
         self.borderStyle = .none
@@ -21,3 +21,19 @@ extension UITextField {
         self.layer.shadowRadius = 0.5
     }
 }
+
+extension UserDefaults {
+    enum Keys {
+        static let UserId = "userid"
+        static let Role = "Role"
+    }
+}
+
+extension KeychainSwift{
+    enum Keys{
+        static let Token = "token"
+        static let Username = "username"
+        static let Password = "password"
+    }
+}
+

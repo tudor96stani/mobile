@@ -18,8 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var apiClient = ApiClient()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        //UIApplication.shared.setStatusBarHidden(false, with: .slide)
         // Override point for customization after application launch.
-        if let token = keychain.get("token"){
+        if let token = keychain.get(KeychainSwift.Keys.Token){
             apiClient.RefreshTokenIfNecessary(token:token) {
                 let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
                 let homeviewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController

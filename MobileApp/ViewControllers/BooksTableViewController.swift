@@ -157,26 +157,25 @@ class BooksTableViewController: UITableViewController {
             else{
                 fatalError("Unexpected destination")
             }
-        guard let detailViewController = navigationViewController.topViewController as? DetailsViewController else{
-            fatalError("Unexpected destination")
-        }
-        guard let selectedBook = sender as? BookTableViewCell
+        if let detailViewController = navigationViewController.topViewController as? DetailsViewController {
+            guard let selectedBook = sender as? BookTableViewCell
+                else{
+                fatalError("Unexpected sender")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedBook) else{
+                fatalError("The selected cell is not displayed by the table")
+            }
+            
+            if let selectedBookViewModel = viewModel.FindBookDetailsViewModel(for: indexPath){
+                detailViewController.viewModel = selectedBookViewModel
+            }
             else{
-            fatalError("Unexpected sender")
-        }
-        
-        guard let indexPath = tableView.indexPath(for: selectedBook) else{
-            fatalError("The selected cell is not displayed by the table")
-        }
-        
-        if let selectedBookViewModel = viewModel.FindBookDetailsViewModel(for: indexPath){
-            detailViewController.viewModel = selectedBookViewModel
-        }
-        else{
-            fatalError("Could not create view model for selected item")
-        }
+                fatalError("Could not create view model for selected item")
+            }
         }
     }
+}
  
 
 

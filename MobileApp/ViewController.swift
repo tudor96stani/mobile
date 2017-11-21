@@ -16,6 +16,8 @@ class ViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var UsernameField: UITextField!
     @IBOutlet weak var PasswordField: UITextField!
     @IBOutlet var viewModel : LoginViewModel!
+    @IBOutlet weak var LoginButtonOutlet: UIButton!
+    @IBOutlet weak var RegisterButtonOutlet: UIButton!
     
     //MARK: Fields
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -26,11 +28,17 @@ class ViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         //Some design things
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent=true;
         self.navigationController?.view.backgroundColor = .clear
+        LoginButtonOutlet.backgroundColor = .clear
+        LoginButtonOutlet.layer.cornerRadius = 5
+        LoginButtonOutlet.layer.borderWidth = 1
+        LoginButtonOutlet.layer.borderColor = UIColor.clear.cgColor
+        
         PasswordField.text=""
         
         //UsernameField.setBottomBorder()
@@ -47,13 +55,16 @@ class ViewController: UIViewController,UITextFieldDelegate {
         //Hide the back button
         let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
-        
-        
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
         PasswordField.text=""
+        self.navigationController?.isNavigationBarHidden = true;
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,8 +72,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
-    
+    //MARK: Methods
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         // Try to find next responder
@@ -85,70 +95,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     }
     
     func Login(username: String,password: String){
-        /*
-        let parameters: Parameters = [
-            "Username":username,
-            "Password":password
-        ]
-        Alamofire.request(Constants.LoginURL,method:.post,parameters:parameters)
-            .validate()
-            .responseJSON { response in
-                
-                switch response.result
-                {
-                case .success(let value):
-                    
-                    self.activityIndicator.stopAnimating()
-                    UIApplication.shared.endIgnoringInteractionEvents()
-                    let json = JSON(value)
-                    let user = User(Id: UUID(uuidString:json["Id"].stringValue)!,Username:json["Username"].stringValue,Role:json["Role"].int!)
-                    self.defaultValues.set(user.Id.uuidString,forKey:"userid")
-                    self.defaultValues.set(user.Username,forKey:"username")
-                    self.defaultValues.set(user.Role,forKey:"userrole")
-                    self.defaultValues.set(true,forKey:"LoggedIn")
-                    self.keychain.set(username,forKey:"username")
-                    self.keychain.set(password,forKey:"password")
-                    switch user.Role{
-                    case 1:
-                        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
-                        self.navigationController?.pushViewController(profileViewController, animated: true)
-                        self.dismiss(animated: false, completion: nil)
-                    case 2:
-                        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
-                        self.navigationController?.pushViewController(profileViewController, animated: true)
-                        self.dismiss(animated: false, completion: nil)
-                    default:
-                        //Undefined role -> not acceptable
-                        let alertController = UIAlertController(title: "Login", message:
-                            "There was an error!", preferredStyle: UIAlertControllerStyle.alert)
-                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                        self.present(alertController, animated: true, completion: nil)
-                    }
-                case .failure( _):
-                    self.activityIndicator.stopAnimating()
-                    UIApplication.shared.endIgnoringInteractionEvents()
-                    if let httpStatusCode = response.response?.statusCode {
-                        switch (httpStatusCode){
-                        case 401:
-                            let alertController = UIAlertController(title: "Login", message:
-                                "Wrong username or password!", preferredStyle: UIAlertControllerStyle.alert)
-                            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                            self.present(alertController, animated: true, completion: nil)
-                        default:
-                            let alertController = UIAlertController(title: "Login", message:
-                                "There was an error!", preferredStyle: UIAlertControllerStyle.alert)
-                            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                            self.present(alertController, animated: true, completion: nil)
-                        }
-                    }else{
-                        let alertController = UIAlertController(title: "Login", message:
-                            "Could not connect!", preferredStyle: UIAlertControllerStyle.alert)
-                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                        self.present(alertController, animated: true, completion: nil)
-                    }
-                    
-                }
-        }*/
+        self.view.endEditing(true)
         self.viewModel.Login(username: username, password: password) { (success) in
             self.activityIndicator.stopAnimating()
             UIApplication.shared.endIgnoringInteractionEvents()
@@ -165,10 +112,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
                     self.dismiss(animated: false, completion: nil)
                 default:
                     //Undefined role -> not acceptable
-                    let alertController = UIAlertController(title: "Login", message:
-                        "There was an error!", preferredStyle: UIAlertControllerStyle.alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                    self.present(alertController, animated: true, completion: nil)
+                    self.DisplayAlert(message: "There was an error!")
                 }
             } else {
                 self.DisplayAlert(message: self.viewModel.errorMessage!)
@@ -186,16 +130,21 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
     
     @IBAction func LoginBtnPress(_ sender: Any) {
-        
         activityIndicator.center = self.view.center;
         activityIndicator.hidesWhenStopped = true
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
-        Login(username:UsernameField.text!,password:PasswordField.text!)
-        
-        
-        
+        if let username = UsernameField.text{
+            if let password = PasswordField.text{
+                Login(username:username,password:password)
+            }else{
+                DisplayAlert(message: "Please enter a password!")
+            }
+        }else{
+            DisplayAlert(message: "Please enter a username!")
+        }
+        //Login(username:UsernameField.text!,password:PasswordField.text!)
     }
 }

@@ -20,7 +20,7 @@ class EditBookViewController: UIViewController,UIPickerViewDelegate, UIPickerVie
     override  func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         AuthorPicker.dataSource=self
         AuthorPicker.delegate=self
         TitleField.text = viewModel.FindBookTitle()

@@ -25,7 +25,7 @@ class RegisterViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     //MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         RolePicker.dataSource=self
         RolePicker.delegate=self
         
