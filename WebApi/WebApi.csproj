@@ -141,9 +141,12 @@
     <Compile Include="Models\Book.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Models\ViewModels\AuthorViewModel.cs" />
+    <Compile Include="Models\ViewModels\BookCreateReponseViewModel.cs" />
+    <Compile Include="Models\ViewModels\BookCreateViewModel.cs" />
     <Compile Include="Models\ViewModels\BookUpdateViewModel.cs" />
     <Compile Include="Models\ViewModels\BookViewModel.cs" />
     <Compile Include="Models\ViewModels\RegisterReponseViewModel.cs" />
+    <Compile Include="Models\ViewModels\ResponseViewModel.cs" />
     <Compile Include="Models\ViewModels\UserBasicInfoViewModel.cs" />
     <Compile Include="Models\ViewModels\UserLoginViewModel.cs" />
     <Compile Include="Models\ViewModels\UserRegisterViewModel.cs" />

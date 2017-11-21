@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using Microsoft.AspNet.Identity;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +70,51 @@ namespace WebApi.Controllers
                 return null;
             }
             
+        }
+
+        [HttpPost]
+        [Route("create")]
+        [Authorize(Roles = "owner")]
+        public BookCreateReponseViewModel Create([FromBody] BookCreateViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                Logger.Trace($"BooksController/Create Entered Create, title={0},authorid={1}", model.Title, model.AuthorId.ToString());
+                try
+                {
+                    
+                    var createdBook = _repository.Create(model.Title,model.AuthorId,model.UserId);
+
+                    return new BookCreateReponseViewModel()
+                    {
+                        Ok = true,
+                        Message = "Success",
+                        Book = new BookViewModel(createdBook)
+                    };
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error($"BooksController/Create Exception thrown while creating: {0}", ex.Message);
+                    return new BookCreateReponseViewModel()
+                    {
+                        Ok = false,
+                        Message = ex.Message,
+                        Book = null
+                    };
+                }
+                
+                
+            }
+            else
+            {
+                Logger.Warn($"BooksController/Create Model not valid for title={0},authorid={1}", model.Title, model.AuthorId);
+                return new BookCreateReponseViewModel()
+                {
+                    Ok = false,
+                    Message = "Invalid data was sent!",
+                    Book = null
+                };
+            }
         }
     }
 }

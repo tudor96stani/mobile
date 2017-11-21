@@ -79,6 +79,7 @@ namespace WebApi.Security
                 { "Username", userName },
                 { "Role", role.ToString()},
                 { "Id", id }
+               
                 //{ "as:client_id", clientid }
             };
             return new AuthenticationProperties(data);

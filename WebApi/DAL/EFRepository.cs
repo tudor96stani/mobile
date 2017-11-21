@@ -89,5 +89,36 @@ namespace WebApi.DAL
                 return dbCtx.Authors.ToList();
             }
         }
+
+        public Book Create(string title, Guid authorid,Guid userid)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                if (db.Books.Any(x => x.Title == title && x.AuthorId == authorid))
+                    throw new Exception("Book already exists!");
+                var author = db.Authors.FirstOrDefault(x => x.Id == authorid);
+                if (author == null)
+                    throw new Exception("Author not valid!");
+
+                var user = db.Users.FirstOrDefault(x => x.Id == userid);
+                if (user == null)
+                    throw new Exception("User not valid!");
+                var book = new Book()
+                {
+                    Id = Guid.NewGuid(),
+                    Title = title,
+                    AuthorId = author.Id,
+                    Author=author,
+                    
+                };
+                book.Users.Add(user);
+                var addResult = db.Books.Add(book);
+                if (addResult == null)
+                    throw new Exception("Could not create book!");
+                user.Books.Add(addResult);
+                db.SaveChanges();
+                return addResult;
+            }
+        }
     }
 }

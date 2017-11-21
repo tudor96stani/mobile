@@ -10,7 +10,7 @@ namespace WebApi.Models.ViewModels
         public Guid Id { get; set; }
         public string Title { get; set; }
         public AuthorViewModel Author { get; set; }
-
+       
         public BookViewModel(Book book)
         {
             Id = book.Id;

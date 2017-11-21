@@ -16,6 +16,7 @@ namespace WebApi.DAL
         List<Book> GetBooksForUser(Guid userId);
         Book GetBookById(Guid bookId);
         Book UpdateBook(Book book);
+        Book Create(string title, Guid authorid,Guid userid);
         #endregion
 
         #region Authors
