@@ -55,5 +55,15 @@ class BookListViewModel: NSObject
         return nil
     }
     
+    func DeleteBook(for indexPath: IndexPath,completion: @escaping (Bool)->Void) {
+        let book = (self.books?[indexPath.row])!;
+        self.books?.remove(at: indexPath.row);
+        apiClient.DeleteBook(id: book.Id) { (Ok) in
+            DispatchQueue.main.async{
+                completion(Ok);
+            }
+        }
+    }
+    
     //
 }

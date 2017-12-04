@@ -199,6 +199,27 @@ class ApiClient : NSObject{
         }
     }
     
+    func DeleteBook(id: UUID,completion: @escaping (Bool)->Void)
+    {
+        let token = self.keychain.get(KeychainSwift.Keys.Token)
+        
+        let headers : HTTPHeaders = [
+            "Authorization" : "Bearer \(token!)"
+        ]
+        Alamofire.request(Constants.DeleteBookURL+id.uuidString,method:.post,headers:headers).validate()
+            .responseJSON { (response) in
+                switch response.result
+                {
+                case .success(let value):
+                    let json = JSON(value)
+                    let ok = json["ok"].boolValue
+                    completion(ok)
+                case .failure( _):
+                    completion(false)
+                }
+        }
+    }
+    
     //MARK: Authors
     func GetAllAuthors(completion: @escaping ([Author]?) -> Void)
     {
