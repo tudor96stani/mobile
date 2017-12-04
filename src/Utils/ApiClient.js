@@ -6,7 +6,9 @@ export const REGISTER_URL = BASE_URL + "users/register";
 export const VERIFY_URL = BASE_URL + "users/verify";
 export const AUTHORS_URL = BASE_URL + "authors";
 export const UPDATE_BOOK_URL = BASE_URL + "books/update";
+export const ADD_BOOK_URL = BASE_URL + "books/create";
 export const DELETE_BOOK_URL = BASE_URL + "books/delete/";
+
 export default class ApiClient {
   static username = "";
   static token = "";
@@ -134,7 +136,7 @@ export default class ApiClient {
     } else {
       return "ERROR";
     }
-  };
+  }
 
   static fetchAuthors = async () => {
     var response = await fetch(AUTHORS_URL);
@@ -143,6 +145,45 @@ export default class ApiClient {
       return jsonRes;
     } else {
       return null;
+    }
+  };
+
+  static addBook = async (title, authorid) => {
+    var userid = await AsyncStorage.getItem("userid");
+    var params = {
+      title: title,
+      authorId: authorid,
+      userId: userid
+    };
+    var token = await AsyncStorage.getItem("token");
+    var formBody = [];
+    for (var property in params) {
+      var encodedKey = encodeURIComponent(property);
+      var encodedValue = encodeURIComponent(params[property]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+    var headers = {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: "Bearer " + token
+    };
+
+    var response = await fetch(ADD_BOOK_URL, {
+      method: "POST",
+      headers: headers,
+      body: formBody
+    });
+
+    if (response.status >= 200 && response.status < 300) {
+      var jsonRes = await response.json();
+      if (jsonRes.ok === true) {
+        return { ok: true, res: jsonRes.book, message: jsonRes.message };
+      } else {
+        return { ok: false, res: null, message: jsonRes.message };
+      }
+    } else {
+      console.log(response.status);
+      return { ok: false, res: null, message: "Error" };
     }
   };
 

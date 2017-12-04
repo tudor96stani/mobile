@@ -32,7 +32,7 @@ class BookList extends Component {
 
   addBook = () => {
     console.log("going to add book");
-    this.props.navigation.navigate("AddBook", null);
+    this.props.navigation.navigate("AddBook", {onGoBack: () => this.reloadData()});
   };
   constructor(props) {
     super(props);
@@ -57,6 +57,10 @@ class BookList extends Component {
 
   componentDidMount() {
     this.props.navigation.setParams({ handleAdd: this.addBook });
+    this.reloadData();
+  }
+
+  reloadData = () => {
     ApiClient.fetchBooks().then(books => {
       if (books != null) {
         this.setState({ dataSource: books });
