@@ -7,13 +7,15 @@ import Register from "./src/Components/Register/Register";
 import BookDetails from "./src/Components/BookDetails/BookDetails";
 import ApiClient from "./src/Utils/ApiClient";
 import BookEdit from "./src/Components/BookEdit/BookEdit";
+import AddBook from './src/Components/AddBook/AddBook';
 const Application = StackNavigator(
   {
     Login: { screen: Login },
     BookList: { screen: BookList },
     Register: { screen: Register },
     BookDetails: { screen: BookDetails },
-    BookEdit: { screen: BookEdit }
+    BookEdit: { screen: BookEdit },
+    AddBook:{screen:AddBook}
   },
   {
     headerMode: "screen",

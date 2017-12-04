@@ -14,33 +14,49 @@ import {
 } from "react-native";
 import * as URLS from "../../Utils/ApiClient";
 import ApiClient from "../../Utils/ApiClient";
+
+import Swipeout from "react-native-swipeout";
 const LogoutText = "Log out";
 // create a component
 class BookList extends Component {
-  static navigationOptions = {
-    title: "Your books",
-    headerStyle: { backgroundColor: "#2c3e50" },
-    headerTitleStyle: { color: "white" }
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state;
+    return {
+      title: "Your books",
+      headerStyle: { backgroundColor: "#2c3e50" },
+      headerTitleStyle: { color: "white" },
+      //headerRight: <Button title="+" onPress={()=>{console.log("Pula mea");}}/>
+      headerRight: <Button title="+" onPress={() => params.handleAdd()} />
+    };
+  };
+
+  addBook = () => {
+    console.log("going to add book");
+    this.props.navigation.navigate("AddBook", null);
   };
   constructor(props) {
     super(props);
 
     this.state = {
+      refreshing: false,
       userid: "",
       token: "",
       dataSource: [
         {
+          id: "",
           title: "",
           author: {
             firstName: "",
             lastName: ""
           }
         }
-      ]
+      ],
+      activeRowId: null
     };
   }
 
   componentDidMount() {
+    this.props.navigation.setParams({ handleAdd: this.addBook });
     ApiClient.fetchBooks().then(books => {
       if (books != null) {
         this.setState({ dataSource: books });
@@ -48,12 +64,25 @@ class BookList extends Component {
     });
   }
 
+  remove(id) {
+    this.setState({
+      dataSource: this.state.dataSource.filter((elem, i) => elem.id !== id)
+    });
+  }
+
   selectItem(authid, fn) {
     Alert.alert(fn);
   }
 
+  refresh = () => {
+    this.state.refreshing = true;
+    this.componentDidMount();
+    this.state.refreshing = false;
+  };
+
   render() {
     const { navigate } = this.props.navigation;
+
     return (
       <View style={styles.container}>
         <FlatList
@@ -61,7 +90,11 @@ class BookList extends Component {
           renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.cell}
-              onPress={() => navigate("BookDetails", { book: item })}
+              onPress={() =>
+                navigate("BookDetails", {
+                  book: item,
+                  onGoBack: id => this.remove(id)
+                })}
             >
               <Text style={styles.text}>{item.title}</Text>
               <Text style={styles.text}>
@@ -69,7 +102,9 @@ class BookList extends Component {
               </Text>
             </TouchableOpacity>
           )}
-          keyExtractor={(item, index) => index}
+          refreshing={this.state.refreshing}
+          onRefresh={this.refresh}
+          keyExtractor={(item, index) => item.id}
         />
       </View>
     );
@@ -81,7 +116,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     //marginTop: 10,
-    backgroundColor: "#2c3e50",
+    backgroundColor: "#2c3e50"
     //paddingTop: 10
   },
   rowContainer: {

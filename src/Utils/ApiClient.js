@@ -6,6 +6,7 @@ export const REGISTER_URL = BASE_URL + "users/register";
 export const VERIFY_URL = BASE_URL + "users/verify";
 export const AUTHORS_URL = BASE_URL + "authors";
 export const UPDATE_BOOK_URL = BASE_URL + "books/update";
+export const DELETE_BOOK_URL = BASE_URL + "books/delete/";
 export default class ApiClient {
   static username = "";
   static token = "";
@@ -69,7 +70,7 @@ export default class ApiClient {
     var username = jsonRes.Username;
     var token = jsonRes.access_token;
     var role = jsonRes.role;
-    
+
     await AsyncStorage.setItem("userid", String(id));
     await AsyncStorage.setItem("username", String(username));
     await AsyncStorage.setItem("token", String(token));
@@ -133,26 +134,26 @@ export default class ApiClient {
     } else {
       return "ERROR";
     }
-  }
+  };
 
   static fetchAuthors = async () => {
     var response = await fetch(AUTHORS_URL);
-    if(response.status >=200 && response.status <300){
+    if (response.status >= 200 && response.status < 300) {
       var jsonRes = response.json();
       return jsonRes;
-    }else{
+    } else {
       return null;
     }
-  }
+  };
 
-  static updateBook = async (bookid,title,authorid) =>{
+  static updateBook = async (bookid, title, authorid) => {
     var params = {
-      Id :bookid,
-      Title :title,
-      AuthorId : authorid
-    }
+      Id: bookid,
+      Title: title,
+      AuthorId: authorid
+    };
     var token = await AsyncStorage.getItem("token");
-    
+
     var formBody = [];
     for (var property in params) {
       var encodedKey = encodeURIComponent(property);
@@ -162,23 +163,44 @@ export default class ApiClient {
     formBody = formBody.join("&");
     var headers = {
       "Content-Type": "application/x-www-form-urlencoded",
-      "Authorization": "Bearer " + token
+      Authorization: "Bearer " + token
     };
     console.log(formBody);
-    var response = await fetch(UPDATE_BOOK_URL,{
-      method:'POST',
-      headers:headers,
-      body:formBody
+    var response = await fetch(UPDATE_BOOK_URL, {
+      method: "POST",
+      headers: headers,
+      body: formBody
     });
     console.log(response);
-    if(response.status >= 200 && response.status < 300){
+    if (response.status >= 200 && response.status < 300) {
       var jsonRes = await response.json();
       console.log(jsonRes);
       var a = 5;
-      return {ok:true,res:jsonRes};
-    }else{
+      return { ok: true, res: jsonRes };
+    } else {
       console.log(response.status);
-      return {ok:false,res:null};
+      return { ok: false, res: null };
     }
-  }
+  };
+
+  static deleteBook = async id => {
+    var token = await AsyncStorage.getItem("token");
+    var headers = {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: "Bearer " + token
+    };
+
+    var response = await fetch(DELETE_BOOK_URL + id, {
+      method: "POST",
+      headers: headers
+    });
+
+    if (response.status >= 200 && response.status < 300) {
+      var jsonRes = await response.json();
+      if (jsonRes.ok === true) {
+        return { ok: true };
+      }
+    }
+    return { ok: false };
+  };
 }

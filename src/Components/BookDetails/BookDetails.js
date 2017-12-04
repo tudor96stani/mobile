@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   AsyncStorage
 } from "react-native";
-
+import ApiClient from "../../Utils/ApiClient";
 // create a component
 class BookDetails extends Component {
   static navigationOptions = {
@@ -50,6 +50,20 @@ class BookDetails extends Component {
         >
           <Text style={styles.textBtn}>Edit this book</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.buttonDelete}
+          onPress={
+            ()=>{
+              //delete book
+              ApiClient.deleteBook(book.id);
+              
+              this.props.navigation.state.params.onGoBack(book.id);
+              this.props.navigation.goBack();
+            }
+          }
+        >
+          <Text style={styles.textBtn}>Delete</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -87,6 +101,11 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#2980b6",
+    paddingVertical: 15,
+    marginTop: 30
+  },
+  buttonDelete:{
+    backgroundColor:"red",
     paddingVertical: 15,
     marginTop: 30
   },
