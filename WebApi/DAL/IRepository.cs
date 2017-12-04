@@ -17,6 +17,7 @@ namespace WebApi.DAL
         Book GetBookById(Guid bookId);
         Book UpdateBook(Book book);
         Book Create(string title, Guid authorid,Guid userid);
+        bool Delete(Guid Id);
         #endregion
 
         #region Authors

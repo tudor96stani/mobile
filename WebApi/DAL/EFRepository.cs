@@ -120,5 +120,18 @@ namespace WebApi.DAL
                 return addResult;
             }
         }
+
+        public bool Delete(Guid Id)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var book = db.Books.Include(x => x.Author).Include(x => x.Users).FirstOrDefault(x => x.Id == Id);
+                if (book == null)
+                    return false;
+                db.Books.Remove(book);
+                db.SaveChanges();
+                return true;
+            }
+        }
     }
 }

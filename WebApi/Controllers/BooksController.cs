@@ -116,5 +116,16 @@ namespace WebApi.Controllers
                 };
             }
         }
+
+
+        [HttpPost]
+        [Route("delete/{id:Guid}")]
+        [Authorize(Roles = "owner")]
+        public SuccessFailureViewModel Delete(Guid id)
+        {
+            if (_repository.Delete(id))
+                return new SuccessFailureViewModel() { Ok = true, Message = "Success" };
+            return new SuccessFailureViewModel() { Ok = false, Message = "There was an error deleting the book!" };
+        }
     }
 }
