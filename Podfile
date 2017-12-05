@@ -9,4 +9,5 @@ target 'MobileApp' do
     pod 'SwiftyJSON'
     pod 'Alamofire', '~> 4.5'
     pod 'KeychainSwift', '~> 10.0'
+    pod 'SwiftCharts', '~> 0.6.1'
 end
