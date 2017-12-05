@@ -21,6 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //UIApplication.shared.setStatusBarHidden(false, with: .slide)
         // Override point for customization after application launch.
         if let token = keychain.get(KeychainSwift.Keys.Token){
+            if !Reachability.isConnectedToNetwork(){
+                let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
+                let homeviewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
+ 
+                let nav = UINavigationController(rootViewController: homeviewcontroller)
+                self.window!.rootViewController = nav
+                self.window!.makeKeyAndVisible()
+            }
+            else
+            {
+                print("not pula mea")
             apiClient.RefreshTokenIfNecessary(token:token) {
                 let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
                 let homeviewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
@@ -28,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let nav = UINavigationController(rootViewController: homeviewcontroller)
                 self.window!.rootViewController = nav
                 self.window!.makeKeyAndVisible()
+                }
             }
         }
         return true

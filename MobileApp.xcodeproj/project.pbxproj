@@ -34,6 +34,11 @@
 		4B8D6D701FD6A4F0006B5B58 /* ChartDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D6D6F1FD6A4F0006B5B58 /* ChartDefaults.swift */; };
 		4B8D6D721FD6A53F006B5B58 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D6D711FD6A53F006B5B58 /* Env.swift */; };
 		4B8D6D741FD6A6BB006B5B58 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D6D731FD6A6BB006B5B58 /* ChartViewController.swift */; };
+		4B9200D41FD72A5800434136 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9200D31FD72A5800434136 /* Reachability.swift */; };
+		4B9200D71FD73F1700434136 /* IOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9200D61FD73F1700434136 /* IOperation.swift */; };
+		4B9200D91FD7403400434136 /* AddOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9200D81FD7403400434136 /* AddOperation.swift */; };
+		4B9200DB1FD74D0900434136 /* DeleteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9200DA1FD74D0900434136 /* DeleteOperation.swift */; };
+		4B9200DD1FD74F1E00434136 /* UpdateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9200DC1FD74F1E00434136 /* UpdateOperation.swift */; };
 		4BAB09341FD6ABBF00A66050 /* ChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB09331FD6ABBF00A66050 /* ChartItem.swift */; };
 		4BAB09361FD6AE8F00A66050 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB09351FD6AE8F00A66050 /* ChartViewModel.swift */; };
 		4BF94C141F9FD76C0090A53B /* BookEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF94C131F9FD76C0090A53B /* BookEditViewModel.swift */; };
@@ -71,6 +76,11 @@
 		4B8D6D6F1FD6A4F0006B5B58 /* ChartDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDefaults.swift; sourceTree = "<group>"; };
 		4B8D6D711FD6A53F006B5B58 /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		4B8D6D731FD6A6BB006B5B58 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		4B9200D31FD72A5800434136 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		4B9200D61FD73F1700434136 /* IOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOperation.swift; sourceTree = "<group>"; };
+		4B9200D81FD7403400434136 /* AddOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOperation.swift; sourceTree = "<group>"; };
+		4B9200DA1FD74D0900434136 /* DeleteOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteOperation.swift; sourceTree = "<group>"; };
+		4B9200DC1FD74F1E00434136 /* UpdateOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateOperation.swift; sourceTree = "<group>"; };
 		4BAB09331FD6ABBF00A66050 /* ChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartItem.swift; sourceTree = "<group>"; };
 		4BAB09351FD6AE8F00A66050 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		4BF94C131F9FD76C0090A53B /* BookEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookEditViewModel.swift; sourceTree = "<group>"; };
@@ -143,11 +153,13 @@
 		4B6C20511F9CD80E00B74B21 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4B9200D51FD73EDC00434136 /* Synchronization */,
 				4B6C20521F9CD83100B74B21 /* Constants.swift */,
 				4B6C20571F9D23A600B74B21 /* ApiClient.swift */,
 				4B666BB51FA9300F00DDBFEA /* ExtensionMethods.swift */,
 				4B8D6D6F1FD6A4F0006B5B58 /* ChartDefaults.swift */,
 				4B8D6D711FD6A53F006B5B58 /* Env.swift */,
+				4B9200D31FD72A5800434136 /* Reachability.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -176,6 +188,17 @@
 				4BAB09351FD6AE8F00A66050 /* ChartViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4B9200D51FD73EDC00434136 /* Synchronization */ = {
+			isa = PBXGroup;
+			children = (
+				4B9200D61FD73F1700434136 /* IOperation.swift */,
+				4B9200D81FD7403400434136 /* AddOperation.swift */,
+				4B9200DA1FD74D0900434136 /* DeleteOperation.swift */,
+				4B9200DC1FD74F1E00434136 /* UpdateOperation.swift */,
+			);
+			path = Synchronization;
 			sourceTree = "<group>";
 		};
 		85FF5EE1AA68C7E234074E64 /* Frameworks */ = {
@@ -334,8 +357,11 @@
 				4B6C20581F9D23A600B74B21 /* ApiClient.swift in Sources */,
 				4B4ECA9A1F9FBE22004566F4 /* BookDetailsViewModel.swift in Sources */,
 				4B824BE21FC43A3E00C2B8CA /* CreateBookViewController.swift in Sources */,
+				4B9200DD1FD74F1E00434136 /* UpdateOperation.swift in Sources */,
 				4B4ECA9C1F9FCA2B004566F4 /* EditBookViewController.swift in Sources */,
 				4B6C20531F9CD83100B74B21 /* Constants.swift in Sources */,
+				4B9200D71FD73F1700434136 /* IOperation.swift in Sources */,
+				4B9200D91FD7403400434136 /* AddOperation.swift in Sources */,
 				4BAB09361FD6AE8F00A66050 /* ChartViewModel.swift in Sources */,
 				4B6C20611F9D3A8700B74B21 /* BookTableViewCell.swift in Sources */,
 				4B8D6D701FD6A4F0006B5B58 /* ChartDefaults.swift in Sources */,
@@ -344,9 +370,11 @@
 				4B6C20631F9D3ACC00B74B21 /* Author.swift in Sources */,
 				4B6C205D1F9D2EF000B74B21 /* BookListViewModel.swift in Sources */,
 				4B6C205F1F9D30FE00B74B21 /* BooksTableViewController.swift in Sources */,
+				4B9200D41FD72A5800434136 /* Reachability.swift in Sources */,
 				4B0438BA1F9EA67900A523A5 /* RegisterViewModel.swift in Sources */,
 				4B52528C1F9CAF890058769C /* AppDelegate.swift in Sources */,
 				4BF94C141F9FD76C0090A53B /* BookEditViewModel.swift in Sources */,
+				4B9200DB1FD74D0900434136 /* DeleteOperation.swift in Sources */,
 				4B824BE41FC4452000C2B8CA /* CreateBookViewModel.swift in Sources */,
 				4BAB09341FD6ABBF00A66050 /* ChartItem.swift in Sources */,
 				4B666BB61FA9300F00DDBFEA /* ExtensionMethods.swift in Sources */,

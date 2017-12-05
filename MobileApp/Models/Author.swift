@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-public class Author {
+class Author:NSObject,NSCoding {
     var Id: UUID;
     var FirstName: String;
     var LastName: String;
@@ -21,7 +21,7 @@ public class Author {
         LastName=lastname
     }
     
-    public init()
+    override init()
     {
         Id=UUID(uuidString:"00000000-0000-0000-0000-000000000000")!
         FirstName=""
@@ -33,5 +33,20 @@ public class Author {
         Id=UUID(uuidString: json["id"].string ?? "00000000-0000-0000-0000-000000000000")!
         FirstName=json["firstName"].string ?? ""
         LastName=json["lastName"].string ?? ""
+        super.init()
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.Id = UUID(uuidString:aDecoder.decodeObject(forKey: "Id") as? String ?? "")!
+        self.FirstName = aDecoder.decodeObject(forKey: "FirstName") as? String ?? ""
+        self.LastName = aDecoder.decodeObject(forKey: "LastName") as? String ?? ""
+    
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(Id.uuidString, forKey: "Id")
+        aCoder.encode(FirstName, forKey: "FirstName")
+        aCoder.encode(LastName,forKey:"LastName")
+    }
+    
 }

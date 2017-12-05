@@ -14,16 +14,17 @@ class BookListViewModel: NSObject
     
     func GetBooks(UserId: UUID,completion: @escaping() -> Void)
     {
+       
         //Call the fetch books method of the apiclient
         //With the completionHandler which assigns to the ViewModel property
         //books the list obtained from the api client
         //And then calls the completion handler received as param from the controller
         apiClient.FetchBooks(UserId: UserId.uuidString) { (books) in
-            DispatchQueue.main.async {
-                self.books = books
-                completion()
-            }
-        }
+                    DispatchQueue.main.async {
+                        self.books = books
+                        completion()
+                    }
+                }
     }
     
     func NumberOfItemsToDisplay(in section: Int)->Int

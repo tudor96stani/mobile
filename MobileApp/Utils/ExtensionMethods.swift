@@ -26,6 +26,9 @@ extension UserDefaults {
     enum Keys {
         static let UserId = "userid"
         static let Role = "Role"
+        static let Books = "books"
+        static let Authors = "authors"
+        static let Operations = "Operations"
     }
 }
 

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileApp/ViewControllers/BooksTableViewController.swift"
-            timestampString = "534165455.835558"
+            timestampString = "534205548.459347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "Logout(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileApp/ViewControllers/RegisterViewController.swift"
-            timestampString = "532964211.853385"
+            timestampString = "534196685.948871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
@@ -42,7 +42,7 @@
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewControllers/RegisterViewController.swift"
-                  timestampString = "534165459.001458"
+                  timestampString = "534205548.607282"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "148"
@@ -57,7 +57,7 @@
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewControllers/RegisterViewController.swift"
-                  timestampString = "534165459.003707"
+                  timestampString = "534205548.609729"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "149"
@@ -90,7 +90,7 @@
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewModels/RegisterViewModel.swift"
-                  timestampString = "534165459.019256"
+                  timestampString = "534205548.61412"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -105,7 +105,7 @@
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewModels/RegisterViewModel.swift"
-                  timestampString = "534165459.0208"
+                  timestampString = "534205548.615556"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
@@ -127,8 +127,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
             endingLineNumber = "90"
-            landmarkName = "barsChart(horizontal:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -175,8 +175,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "115"
             endingLineNumber = "115"
-            landmarkName = "barsChart(horizontal:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

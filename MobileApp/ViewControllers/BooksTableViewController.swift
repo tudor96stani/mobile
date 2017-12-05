@@ -36,8 +36,11 @@ class BooksTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = backButton
         
         //Call the GetBooks method of the viewmodel with the completionHandler that reloads the table data
-        viewModel.GetBooks(UserId: UUID(uuidString:UserDefaults.standard.string(forKey:"userid")!)!) {
-            self.tableView.reloadData()
+        if let _ = UserDefaults.standard.string(forKey:"userid"){
+            
+            viewModel.GetBooks(UserId: UUID(uuidString:UserDefaults.standard.string(forKey:"userid")!)!) {
+                self.tableView.reloadData()
+            }
         }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
