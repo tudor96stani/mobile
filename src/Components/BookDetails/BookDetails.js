@@ -64,6 +64,14 @@ class BookDetails extends Component {
         >
           <Text style={styles.textBtn}>Delete</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={
+            ()=>navigate("Chart",null)
+          }
+        >
+          <Text style={styles.textBtn}>Chart</Text>
+        </TouchableOpacity>
       </View>
     );
   }

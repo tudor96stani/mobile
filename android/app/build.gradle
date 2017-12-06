@@ -133,6 +133,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-svg')
     compile project(':react-native-mail-compose')
     compile project(':react-native-mail')
     compile fileTree(dir: "libs", include: ["*.jar"])

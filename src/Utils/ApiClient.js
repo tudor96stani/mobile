@@ -8,7 +8,7 @@ export const AUTHORS_URL = BASE_URL + "authors";
 export const UPDATE_BOOK_URL = BASE_URL + "books/update";
 export const ADD_BOOK_URL = BASE_URL + "books/create";
 export const DELETE_BOOK_URL = BASE_URL + "books/delete/";
-
+import { NetInfo } from "react-native";
 export default class ApiClient {
   static username = "";
   static token = "";
@@ -82,24 +82,39 @@ export default class ApiClient {
   }
 
   static async fetchBooks() {
-    var userid = await AsyncStorage.getItem("userid");
-    var token = await AsyncStorage.getItem("token");
-    const headers = {
-      Authorization: "Bearer " + token
-    };
-    const url = GET_BOOKS_URL + userid;
-
-    var response = await fetch(url, {
-      method: "GET",
-      headers: headers
-    });
-
-    if (response.status >= 200 && response.status < 300) {
-      var jsonRes = await response.json();
-      var a = 4;
-      return jsonRes;
+    var type = await NetInfo.getConnectionInfo();
+    if (type.type === "none") {
+      //no connection -> fetch data from the local storage
+      const books = await AsyncStorage.getItem("books");
+      if (books !== null) {
+        return JSON.parse(books);
+      }
     } else {
-      return null;
+      var userid = await AsyncStorage.getItem("userid");
+      var token = await AsyncStorage.getItem("token");
+      const headers = {
+        Authorization: "Bearer " + token
+      };
+      const url = GET_BOOKS_URL + userid;
+
+      var response = await fetch(url, {
+        method: "GET",
+        headers: headers
+      });
+
+      if (response.status >= 200 && response.status < 300) {
+        var jsonRes = await response.json();
+        var a = 4;
+        await AsyncStorage.setItem("books", JSON.stringify(jsonRes));
+        var authors = [];
+        for (let b of jsonRes) {
+          authors.push(b.author);
+        }
+        await AsyncStorage.setItem("books", JSON.stringify(authors));
+        return jsonRes;
+      } else {
+        return null;
+      }
     }
   }
 
@@ -139,109 +154,175 @@ export default class ApiClient {
   }
 
   static fetchAuthors = async () => {
-    var response = await fetch(AUTHORS_URL);
-    if (response.status >= 200 && response.status < 300) {
-      var jsonRes = response.json();
-      return jsonRes;
+    var type = await NetInfo.getConnectionInfo();
+    if (type.type === "none") {
+      //no connection => fetch from local storage
+      const authors = await AsyncStorage.getItem("authors");
+      if (authors !== null) {
+        return JSON.parse(authors);
+      }
     } else {
-      return null;
+      var response = await fetch(AUTHORS_URL);
+      if (response.status >= 200 && response.status < 300) {
+        var jsonRes = response.json();
+        return jsonRes;
+      } else {
+        return null;
+      }
     }
   };
 
   static addBook = async (title, authorid) => {
-    var userid = await AsyncStorage.getItem("userid");
-    var params = {
-      title: title,
-      authorId: authorid,
-      userId: userid
-    };
-    var token = await AsyncStorage.getItem("token");
-    var formBody = [];
-    for (var property in params) {
-      var encodedKey = encodeURIComponent(property);
-      var encodedValue = encodeURIComponent(params[property]);
-      formBody.push(encodedKey + "=" + encodedValue);
-    }
-    formBody = formBody.join("&");
-    var headers = {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: "Bearer " + token
-    };
-
-    var response = await fetch(ADD_BOOK_URL, {
-      method: "POST",
-      headers: headers,
-      body: formBody
-    });
-
-    if (response.status >= 200 && response.status < 300) {
-      var jsonRes = await response.json();
-      if (jsonRes.ok === true) {
-        return { ok: true, res: jsonRes.book, message: jsonRes.message };
+    var conn = await NetInfo.getConnectionInfo();
+    if (conn.type === "none") {
+      var operations = await AsyncStorage.getItem("operations");
+      if (operations === null) {
+        var ops = [Operation("Add", [title, authorid])];
+        await AsyncStorage.setItem("operations", JSON.stringify(ops));
       } else {
-        return { ok: false, res: null, message: jsonRes.message };
+        var opsArray = JSON.parse(operations);
+        opsArray.push(Operation("Add", [title, authorid]));
+        await AsyncStorage.setItem("operations", JSON.stringify(opsArray));
       }
     } else {
-      console.log(response.status);
-      return { ok: false, res: null, message: "Error" };
+      var userid = await AsyncStorage.getItem("userid");
+      var params = {
+        title: title,
+        authorId: authorid,
+        userId: userid
+      };
+      var token = await AsyncStorage.getItem("token");
+      var formBody = [];
+      for (var property in params) {
+        var encodedKey = encodeURIComponent(property);
+        var encodedValue = encodeURIComponent(params[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+      }
+      formBody = formBody.join("&");
+      var headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: "Bearer " + token
+      };
+
+      var response = await fetch(ADD_BOOK_URL, {
+        method: "POST",
+        headers: headers,
+        body: formBody
+      });
+
+      if (response.status >= 200 && response.status < 300) {
+        var jsonRes = await response.json();
+        if (jsonRes.ok === true) {
+          return { ok: true, res: jsonRes.book, message: jsonRes.message };
+        } else {
+          return { ok: false, res: null, message: jsonRes.message };
+        }
+      } else {
+        console.log(response.status);
+        return { ok: false, res: null, message: "Error" };
+      }
     }
   };
 
   static updateBook = async (bookid, title, authorid) => {
-    var params = {
-      Id: bookid,
-      Title: title,
-      AuthorId: authorid
-    };
-    var token = await AsyncStorage.getItem("token");
-
-    var formBody = [];
-    for (var property in params) {
-      var encodedKey = encodeURIComponent(property);
-      var encodedValue = encodeURIComponent(params[property]);
-      formBody.push(encodedKey + "=" + encodedValue);
-    }
-    formBody = formBody.join("&");
-    var headers = {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: "Bearer " + token
-    };
-    console.log(formBody);
-    var response = await fetch(UPDATE_BOOK_URL, {
-      method: "POST",
-      headers: headers,
-      body: formBody
-    });
-    console.log(response);
-    if (response.status >= 200 && response.status < 300) {
-      var jsonRes = await response.json();
-      console.log(jsonRes);
-      var a = 5;
-      return { ok: true, res: jsonRes };
+    var conn = await NetInfo.getConnectionInfo();
+    if (conn.type === "none") {
+      var operations = await AsyncStorage.getItem("operations");
+      if (operations === null) {
+        var ops = [Operation("Update", [bookid, title, authorid])];
+        await AsyncStorage.setItem("operations", JSON.stringify(ops));
+      } else {
+        var opsArray = JSON.parse(operations);
+        opsArray.push(Operation("Update", [bookid, title, authorid]));
+        await AsyncStorage.setItem("operations", JSON.stringify(opsArray));
+      }
     } else {
-      console.log(response.status);
-      return { ok: false, res: null };
+      var params = {
+        Id: bookid,
+        Title: title,
+        AuthorId: authorid
+      };
+      var token = await AsyncStorage.getItem("token");
+
+      var formBody = [];
+      for (var property in params) {
+        var encodedKey = encodeURIComponent(property);
+        var encodedValue = encodeURIComponent(params[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+      }
+      formBody = formBody.join("&");
+      var headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: "Bearer " + token
+      };
+      console.log(formBody);
+      var response = await fetch(UPDATE_BOOK_URL, {
+        method: "POST",
+        headers: headers,
+        body: formBody
+      });
+      console.log(response);
+      if (response.status >= 200 && response.status < 300) {
+        var jsonRes = await response.json();
+        console.log(jsonRes);
+        var a = 5;
+        return { ok: true, res: jsonRes };
+      } else {
+        console.log(response.status);
+        return { ok: false, res: null };
+      }
     }
   };
 
   static deleteBook = async id => {
-    var token = await AsyncStorage.getItem("token");
-    var headers = {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: "Bearer " + token
-    };
+    var conn = await NetInfo.getConnectionInfo();
+    if (conn.type === "none") {
+      var operations = await AsyncStorage.getItem("operations");
+      if (operations === null) {
+        var ops = [Operation("Delete", [id])];
+        await AsyncStorage.setItem("operations", JSON.stringify(ops));
+      } else {
+        var opsArray = JSON.parse(operations);
+        opsArray.push(Operation("Delete", [id]));
+        await AsyncStorage.setItem("operations", JSON.stringify(opsArray));
+      }
+    } else {
+      var token = await AsyncStorage.getItem("token");
+      var headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: "Bearer " + token
+      };
 
-    var response = await fetch(DELETE_BOOK_URL + id, {
-      method: "POST",
-      headers: headers
-    });
+      var response = await fetch(DELETE_BOOK_URL + id, {
+        method: "POST",
+        headers: headers
+      });
 
-    if (response.status >= 200 && response.status < 300) {
-      var jsonRes = await response.json();
-      if (jsonRes.ok === true) {
-        return { ok: true };
+      if (response.status >= 200 && response.status < 300) {
+        var jsonRes = await response.json();
+        if (jsonRes.ok === true) {
+          return { ok: true };
+        }
+      }
+      return { ok: false };
+    }
+  };
+
+  static sync = async () => {
+    var operations = await AsyncStorage.getItem("operations");
+    if (operations !== null) {
+      var opsArray = JSON.parse(operations);
+      for (let op of opsArray) {
+        if (op.type === "Add") {
+          await addBook(op.params[0], op.params[1]);
+        } else if (op.type === "Delete") {
+          await deleteBook(op.params[0]);
+        } else if (op.type === "Update") {
+          await updateBook(op.params[0],op.params[1],op.params[2]);
+        } else {
+          console.log("Operation in queue not valid!");
+        }
       }
     }
-    return { ok: false };
   };
 }

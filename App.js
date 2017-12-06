@@ -8,6 +8,7 @@ import BookDetails from "./src/Components/BookDetails/BookDetails";
 import ApiClient from "./src/Utils/ApiClient";
 import BookEdit from "./src/Components/BookEdit/BookEdit";
 import AddBook from './src/Components/AddBook/AddBook';
+import Chart from './src/Components/Chart/Chart';
 const Application = StackNavigator(
   {
     Login: { screen: Login },
@@ -15,7 +16,8 @@ const Application = StackNavigator(
     Register: { screen: Register },
     BookDetails: { screen: BookDetails },
     BookEdit: { screen: BookEdit },
-    AddBook:{screen:AddBook}
+    AddBook:{screen:AddBook},
+    Chart:{screen:Chart}
   },
   {
     headerMode: "screen",
