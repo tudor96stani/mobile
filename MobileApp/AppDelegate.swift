@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             else
             {
-                print("not pula mea")
+                
             apiClient.RefreshTokenIfNecessary(token:token) {
                 let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
                 let homeviewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController

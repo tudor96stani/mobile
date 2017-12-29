@@ -42,12 +42,12 @@
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewControllers/RegisterViewController.swift"
-                  timestampString = "534205548.607282"
+                  timestampString = "536232646.621068"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "148"
                   endingLineNumber = "148"
-                  offsetFromSymbolStart = "1020">
+                  offsetFromSymbolStart = "1230">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -57,7 +57,7 @@
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewControllers/RegisterViewController.swift"
-                  timestampString = "534205548.609729"
+                  timestampString = "536232646.624037"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "149"
@@ -90,12 +90,12 @@
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewModels/RegisterViewModel.swift"
-                  timestampString = "534205548.61412"
+                  timestampString = "536232646.630546"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
                   endingLineNumber = "18"
-                  offsetFromSymbolStart = "68">
+                  offsetFromSymbolStart = "75">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -105,12 +105,12 @@
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewModels/RegisterViewModel.swift"
-                  timestampString = "534205548.615556"
+                  timestampString = "536232646.633453"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
                   endingLineNumber = "20"
-                  offsetFromSymbolStart = "68">
+                  offsetFromSymbolStart = "82">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -122,61 +122,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileApp/ViewControllers/ChartViewController.swift"
-            timestampString = "534165455.835727"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "unknown"
-            landmarkType = "0">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MobileApp.ChartViewController.(barsChart in _7A556832932816A92565AB1D53F6560F)(horizontal: Swift.Bool) -&gt; SwiftCharts.Chart"
-                  moduleName = "MobileApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewControllers/ChartViewController.swift"
-                  timestampString = "534164911.266461"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "2505">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (Swift.Int) -&gt; Swift.Bool in MobileApp.ChartViewController.(barsChart in _7A556832932816A92565AB1D53F6560F)(horizontal: Swift.Bool) -&gt; SwiftCharts.Chart"
-                  moduleName = "MobileApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewControllers/ChartViewController.swift"
-                  timestampString = "534164911.273361"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "8">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MobileApp/ViewControllers/ChartViewController.swift"
-            timestampString = "534165455.836128"
+            timestampString = "536230063.057305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "115"
             endingLineNumber = "115"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "barsChart(horizontal:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

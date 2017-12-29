@@ -41,6 +41,8 @@
 		4B9200DD1FD74F1E00434136 /* UpdateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9200DC1FD74F1E00434136 /* UpdateOperation.swift */; };
 		4BAB09341FD6ABBF00A66050 /* ChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB09331FD6ABBF00A66050 /* ChartItem.swift */; };
 		4BAB09361FD6AE8F00A66050 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB09351FD6AE8F00A66050 /* ChartViewModel.swift */; };
+		4BAE25FF1FF63BB600D1D116 /* CreateAuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAE25FE1FF63BB600D1D116 /* CreateAuthorViewController.swift */; };
+		4BAE26011FF63E4900D1D116 /* CreateAuthorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAE26001FF63E4900D1D116 /* CreateAuthorViewModel.swift */; };
 		4BF94C141F9FD76C0090A53B /* BookEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF94C131F9FD76C0090A53B /* BookEditViewModel.swift */; };
 		7457CAE95408CFF600D837E9 /* Pods_MobileApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC34AB3D92978F0584ADBB6 /* Pods_MobileApp.framework */; };
 /* End PBXBuildFile section */
@@ -83,6 +85,8 @@
 		4B9200DC1FD74F1E00434136 /* UpdateOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateOperation.swift; sourceTree = "<group>"; };
 		4BAB09331FD6ABBF00A66050 /* ChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartItem.swift; sourceTree = "<group>"; };
 		4BAB09351FD6AE8F00A66050 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
+		4BAE25FE1FF63BB600D1D116 /* CreateAuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAuthorViewController.swift; sourceTree = "<group>"; };
+		4BAE26001FF63E4900D1D116 /* CreateAuthorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAuthorViewModel.swift; sourceTree = "<group>"; };
 		4BF94C131F9FD76C0090A53B /* BookEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookEditViewModel.swift; sourceTree = "<group>"; };
 		6555B1648A8EA522D82B3184 /* Pods-MobileApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileApp/Pods-MobileApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6CC34AB3D92978F0584ADBB6 /* Pods_MobileApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +150,7 @@
 				4B4ECA9B1F9FCA2B004566F4 /* EditBookViewController.swift */,
 				4B824BE11FC43A3E00C2B8CA /* CreateBookViewController.swift */,
 				4B8D6D731FD6A6BB006B5B58 /* ChartViewController.swift */,
+				4BAE25FE1FF63BB600D1D116 /* CreateAuthorViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				4B666BB11FA90D3000DDBFEA /* LoginViewModel.swift */,
 				4B824BE31FC4452000C2B8CA /* CreateBookViewModel.swift */,
 				4BAB09351FD6AE8F00A66050 /* ChartViewModel.swift */,
+				4BAE26001FF63E4900D1D116 /* CreateAuthorViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -380,9 +386,11 @@
 				4B666BB61FA9300F00DDBFEA /* ExtensionMethods.swift in Sources */,
 				4B0438B81F9EA24800A523A5 /* RegisterViewController.swift in Sources */,
 				4B8D6D741FD6A6BB006B5B58 /* ChartViewController.swift in Sources */,
+				4BAE26011FF63E4900D1D116 /* CreateAuthorViewModel.swift in Sources */,
 				4B6C20501F9CD68D00B74B21 /* OwnerListViewController.swift in Sources */,
 				4B5252941F9CAF8A0058769C /* MobileApp.xcdatamodeld in Sources */,
 				4B8D6D721FD6A53F006B5B58 /* Env.swift in Sources */,
+				4BAE25FF1FF63BB600D1D116 /* CreateAuthorViewController.swift in Sources */,
 				4B666BB21FA90D3000DDBFEA /* LoginViewModel.swift in Sources */,
 				4B4ECA981F9FBA3F004566F4 /* DetailsViewController.swift in Sources */,
 			);

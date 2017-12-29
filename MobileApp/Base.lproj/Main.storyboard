@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JbB-me-3T0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JbB-me-3T0">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -274,6 +274,14 @@
                                     <constraint firstAttribute="trailing" secondItem="Bae-dN-4Cw" secondAttribute="trailing" constant="20" id="l8d-1D-RSc"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNj-qT-PyZ">
+                                <rect key="frame" x="126" y="516" width="122" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create Author"/>
+                                <connections>
+                                    <segue destination="9di-sY-R0h" kind="presentation" id="PGH-6D-auY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -309,7 +317,69 @@
                 </customObject>
                 <customObject id="m4q-ZS-MnQ" customClass="ApiClient" customModule="MobileApp" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="3639" y="-718"/>
+            <point key="canvasLocation" x="3637.5999999999999" y="-718.29085457271367"/>
+        </scene>
+        <!--Create Author View Controller-->
+        <scene sceneID="sWy-dJ-XGw">
+            <objects>
+                <viewController storyboardIdentifier="CreateAuthorViewController" id="kqm-Mq-S10" customClass="CreateAuthorViewController" customModule="MobileApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UF3-oD-WqK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="SEF-Ny-I4b">
+                                <rect key="frame" x="0.0" y="216" width="375" height="90"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X8j-IE-cqL">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ob-SD-psI">
+                                        <rect key="frame" x="0.0" y="60" width="375" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SEF-Ny-I4b" firstAttribute="leading" secondItem="6Kh-BR-weG" secondAttribute="leading" id="Mrn-Ln-pm4"/>
+                            <constraint firstItem="6Kh-BR-weG" firstAttribute="trailing" secondItem="SEF-Ny-I4b" secondAttribute="trailing" id="N8X-NM-C0H"/>
+                            <constraint firstItem="SEF-Ny-I4b" firstAttribute="top" secondItem="6Kh-BR-weG" secondAttribute="top" constant="152" id="Vtp-vg-7Df"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Kh-BR-weG"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gNO-kY-Dt0">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="92S-Jq-uYf">
+                            <connections>
+                                <action selector="cancelButtonPress:" destination="kqm-Mq-S10" id="yb0-5K-dWr"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="D4j-4X-l7d">
+                            <connections>
+                                <action selector="saveButtonPress:" destination="kqm-Mq-S10" id="EOi-hZ-Y2C"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="firstNameTextField" destination="X8j-IE-cqL" id="XJo-Tv-SkW"/>
+                        <outlet property="lastNameTextField" destination="6ob-SD-psI" id="qYe-Lj-Ns3"/>
+                        <outlet property="viewModel" destination="W5w-3W-h7o" id="Eir-0k-hpo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HIU-Hf-DnC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="W5w-3W-h7o" customClass="CreateAuthorViewModel" customModule="MobileApp" customModuleProvider="target">
+                    <connections>
+                        <outlet property="apiClient" destination="ODu-lk-EdX" id="4Cd-SF-a8Z"/>
+                    </connections>
+                </customObject>
+                <customObject id="ODu-lk-EdX" customClass="ApiClient" customModule="MobileApp" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="5104.8000000000002" y="-718.29085457271367"/>
         </scene>
         <!--Your books-->
         <scene sceneID="0Bh-bj-bLs">
@@ -634,6 +704,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9h-gU-bhy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4444" y="134"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5ir-Ef-AxK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9di-sY-R0h" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JsB-vc-bi1">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kqm-Mq-S10" kind="relationship" relationship="rootViewController" id="cDI-kA-weC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vic-Xc-f85" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4444" y="-718"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

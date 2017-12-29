@@ -28,6 +28,13 @@ class CreateBookViewController: UIViewController,UIPickerViewDelegate, UIPickerV
         }
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        viewModel.FindAuthors(){
+            self.dataSource = self.viewModel.GetAuthorDataForPicker()
+            self.authorPicker.reloadAllComponents()
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

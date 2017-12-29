@@ -279,7 +279,7 @@ class ApiClient : NSObject{
                 if let authorsArray = NSKeyedUnarchiver.unarchiveObject(with: authorsData as Data) as? [Author] {
                     if let booksData = defaultValues.object(forKey: UserDefaults.Keys.Books) as? NSData {
                         if let booksArray = NSKeyedUnarchiver.unarchiveObject(with: booksData as Data) as? [Book] {
-                            var oldBook = booksArray.first(where: { (b) -> Bool in
+                            let oldBook = booksArray.first(where: { (b) -> Bool in
                                 b.Id.uuidString == id.uuidString
                             })
                             oldBook?.Title=title
@@ -378,6 +378,39 @@ class ApiClient : NSObject{
                     completion(authorsArray)
                 }
             }
+        }
+    }
+    
+    func CreateAuthor(firstName:String,lastName:String,completion: @escaping (Author?,Bool,String)->Void)
+    {
+        if Reachability.isConnectedToNetwork()
+        {
+            let params : Parameters = [
+                "FirstName":firstName,
+                "LastName":lastName
+            ]
+            Alamofire.request(Constants.CreateAuthorURL,method:.post,parameters:params).validate()
+                .responseJSON(completionHandler: { (response) in
+                    switch response.result{
+                    case .success(let value):
+                        print("OK")
+                        let json = JSON(value)
+                        let ok = json["Ok"].boolValue
+                        if ok{
+                            let author = Author(json:json["Author"])
+                            completion(author,true,"OK")
+                        }
+                        else{
+                            completion(nil,false,json["Message"].stringValue)
+                        }
+                    case .failure( _):
+                        completion(nil,false,"There was an error")
+                    }
+                })
+        }
+        else
+        {
+            completion(nil,false,"You need an internet connection to create an author!")
         }
     }
     
