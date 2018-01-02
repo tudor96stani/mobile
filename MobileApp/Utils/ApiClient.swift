@@ -62,6 +62,7 @@ class ApiClient : NSObject{
                     self.keychain.set(password,forKey:KeychainSwift.Keys.Password)
                     self.defaultValues.set(json["Id"].stringValue,forKey:UserDefaults.Keys.UserId)
                     self.defaultValues.set(json["Role"].stringValue,forKey: UserDefaults.Keys.Role)
+                    
                     completion(user,nil,true)
                 case .failure(let error):
                     //completion(nil,nil,false)
@@ -124,6 +125,7 @@ class ApiClient : NSObject{
             let headers : HTTPHeaders = [
                 "Authorization" : "Bearer \(token!)"
             ]
+            
             Alamofire.request(Constants.UserBooksURL+UserId,headers:headers).validate()
                 .responseJSON { (response) in
                     switch response.result{
@@ -167,6 +169,62 @@ class ApiClient : NSObject{
             }
         }
     }
+    
+    func FetchAllBooks(completion: @escaping ([Book]?)->Void)
+    {
+        
+        if Reachability.isConnectedToNetwork(){
+            //fetch books from remote server
+            let token = self.keychain.get(KeychainSwift.Keys.Token)
+            let headers : HTTPHeaders = [
+                "Authorization" : "Bearer \(token!)"
+            ]
+            
+            Alamofire.request(Constants.AllBooksURL,headers:headers).validate()
+                .responseJSON { (response) in
+                    switch response.result{
+                    case .success(let value):
+                        let json = JSON(value)
+                        var books = Array<Book>()
+                        for(_,subJson):(String,JSON) in json
+                        {
+                            books.append(Book(json:subJson))
+                        }
+                        //save books and authors locally when they are fetched, to be available for offline usage
+                        let booksData = NSKeyedArchiver.archivedData(withRootObject: books)
+                        self.defaultValues.set(booksData, forKey: UserDefaults.Keys.Books)
+                        let authors = books.map{$0.BookAuthor};
+                        var authorsSet = [Author]()
+                        
+                        for a in authors{
+                            if !authorsSet.contains(where: { (auth) -> Bool in
+                                a.Id.uuidString==auth.Id.uuidString
+                            })
+                            {
+                                authorsSet.append(a)
+                            }
+                        }
+                        let authorsData = NSKeyedArchiver.archivedData(withRootObject: authorsSet)
+                        self.defaultValues.set(authorsData,forKey:UserDefaults.Keys.Authors)
+                        self.Sync();
+                        //finish
+                        completion(books)
+                    case .failure( _):
+                        completion(nil)
+                    }
+            }
+        }
+        else{
+            //fetch books from local storage
+            if let booksData = defaultValues.object(forKey: UserDefaults.Keys.Books) as? NSData {
+                if let booksArray = NSKeyedUnarchiver.unarchiveObject(with: booksData as Data) as? [Book] {
+                    completion(booksArray)
+                }
+            }
+        }
+    }
+    
+    
     
     func CreateBook(title:String,authorid:UUID,completion: @escaping (Book?,Bool,String)->Void)
     {

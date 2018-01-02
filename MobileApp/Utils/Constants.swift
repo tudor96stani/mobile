@@ -17,6 +17,7 @@ public enum Constants{
     
     //MARK: Books
     static let UserBooksURL: String = BaseURL + "books/user/";
+    static let AllBooksURL: String = BaseURL + "books/GetAll";
     static let UpdateBookURL: String = BaseURL + "books/update";
     static let CreateBookURL : String = BaseURL + "books/create";
     static let DeleteBookURL: String = BaseURL + "books/delete/";

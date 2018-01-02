@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileApp/ViewControllers/BooksTableViewController.swift"
-            timestampString = "534205548.459347"
+            timestampString = "536237886.097817"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "125"
@@ -22,7 +22,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileApp/ViewControllers/RegisterViewController.swift"
@@ -35,14 +35,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "MobileApp.RegisterViewController.RegisterPress(Any) -&gt; ()"
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewControllers/RegisterViewController.swift"
-                  timestampString = "536232646.621068"
+                  timestampString = "536234472.009197"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "148"
@@ -50,14 +50,14 @@
                   offsetFromSymbolStart = "1230">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Bool) -&gt; () in MobileApp.RegisterViewController.RegisterPress(Any) -&gt; ()"
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewControllers/RegisterViewController.swift"
-                  timestampString = "536232646.624037"
+                  timestampString = "536234472.011863"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "149"
@@ -70,7 +70,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileApp/ViewModels/RegisterViewModel.swift"
@@ -83,14 +83,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "MobileApp.RegisterViewModel.RegisterUser(username: Swift.String, password: Swift.String, role: Swift.Int, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewModels/RegisterViewModel.swift"
-                  timestampString = "536232646.630546"
+                  timestampString = "536234472.018769"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -98,14 +98,14 @@
                   offsetFromSymbolStart = "75">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;MobileApp.User&gt;, Swift.Optional&lt;Swift.String&gt;, Swift.Bool) -&gt; () in MobileApp.RegisterViewModel.RegisterUser(username: Swift.String, password: Swift.String, role: Swift.Int, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
                   moduleName = "MobileApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/tudorstanila/Documents/an3sem1/mobile/iOSProject/MobileApp/MobileApp/ViewModels/RegisterViewModel.swift"
-                  timestampString = "536232646.633453"
+                  timestampString = "536234472.021531"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
@@ -128,6 +128,22 @@
             startingLineNumber = "115"
             endingLineNumber = "115"
             landmarkName = "barsChart(horizontal:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MobileApp/ViewControllers/ViewerTableViewController.swift"
+            timestampString = "536239279.246641"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -27,6 +27,16 @@ class BookListViewModel: NSObject
                 }
     }
     
+    func GetAllBooks(completion: @escaping() -> Void)
+    {
+        apiClient.FetchAllBooks() { (books) in
+            DispatchQueue.main.async {
+                self.books = books
+                completion()
+            }
+        }
+    }
+    
     func NumberOfItemsToDisplay(in section: Int)->Int
     {
         return books?.count ?? 0;

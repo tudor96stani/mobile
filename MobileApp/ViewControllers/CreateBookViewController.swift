@@ -71,6 +71,7 @@ class CreateBookViewController: UIViewController,UIPickerViewDelegate, UIPickerV
             if success{
                 self.dismiss(animated: true, completion: nil)
                 //self.DisplayAlert(message: "\(title) successfully added to library")
+                NotificationClient.Send(title: "Your book has been added", body: "\(title) has been successfully added to your library", badge: 1, timeInt: 5, identifier: "addBook")
             }else{
                 self.DisplayAlert(message: "\(self.viewModel.message!)")
                 self.dismiss(animated: true, completion: nil)

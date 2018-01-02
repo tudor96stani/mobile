@@ -18,6 +18,7 @@
 		4B5252941F9CAF8A0058769C /* MobileApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B5252921F9CAF8A0058769C /* MobileApp.xcdatamodeld */; };
 		4B5252961F9CAF8A0058769C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B5252951F9CAF8A0058769C /* Assets.xcassets */; };
 		4B5252991F9CAF8A0058769C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B5252971F9CAF8A0058769C /* LaunchScreen.storyboard */; };
+		4B6166BB1FF6585C0007A56A /* ViewerBookTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6166BA1FF6585C0007A56A /* ViewerBookTableCell.swift */; };
 		4B666BB21FA90D3000DDBFEA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B666BB11FA90D3000DDBFEA /* LoginViewModel.swift */; };
 		4B666BB61FA9300F00DDBFEA /* ExtensionMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B666BB51FA9300F00DDBFEA /* ExtensionMethods.swift */; };
 		4B6C20501F9CD68D00B74B21 /* OwnerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C204F1F9CD68D00B74B21 /* OwnerListViewController.swift */; };
@@ -43,6 +44,8 @@
 		4BAB09361FD6AE8F00A66050 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB09351FD6AE8F00A66050 /* ChartViewModel.swift */; };
 		4BAE25FF1FF63BB600D1D116 /* CreateAuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAE25FE1FF63BB600D1D116 /* CreateAuthorViewController.swift */; };
 		4BAE26011FF63E4900D1D116 /* CreateAuthorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAE26001FF63E4900D1D116 /* CreateAuthorViewModel.swift */; };
+		4BAE26051FF647D700D1D116 /* ViewerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAE26041FF647D700D1D116 /* ViewerTableViewController.swift */; };
+		4BB5BFDC1FFBA84F00897ACB /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB5BFDB1FFBA84F00897ACB /* Notifications.swift */; };
 		4BF94C141F9FD76C0090A53B /* BookEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF94C131F9FD76C0090A53B /* BookEditViewModel.swift */; };
 		7457CAE95408CFF600D837E9 /* Pods_MobileApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC34AB3D92978F0584ADBB6 /* Pods_MobileApp.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +65,7 @@
 		4B5252951F9CAF8A0058769C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B5252981F9CAF8A0058769C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B52529A1F9CAF8A0058769C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B6166BA1FF6585C0007A56A /* ViewerBookTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerBookTableCell.swift; sourceTree = "<group>"; };
 		4B666BB11FA90D3000DDBFEA /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4B666BB51FA9300F00DDBFEA /* ExtensionMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionMethods.swift; sourceTree = "<group>"; };
 		4B6C204F1F9CD68D00B74B21 /* OwnerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerListViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 		4BAB09351FD6AE8F00A66050 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		4BAE25FE1FF63BB600D1D116 /* CreateAuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAuthorViewController.swift; sourceTree = "<group>"; };
 		4BAE26001FF63E4900D1D116 /* CreateAuthorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAuthorViewModel.swift; sourceTree = "<group>"; };
+		4BAE26041FF647D700D1D116 /* ViewerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerTableViewController.swift; sourceTree = "<group>"; };
+		4BB5BFDB1FFBA84F00897ACB /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		4BF94C131F9FD76C0090A53B /* BookEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookEditViewModel.swift; sourceTree = "<group>"; };
 		6555B1648A8EA522D82B3184 /* Pods-MobileApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileApp/Pods-MobileApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6CC34AB3D92978F0584ADBB6 /* Pods_MobileApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +157,7 @@
 				4B824BE11FC43A3E00C2B8CA /* CreateBookViewController.swift */,
 				4B8D6D731FD6A6BB006B5B58 /* ChartViewController.swift */,
 				4BAE25FE1FF63BB600D1D116 /* CreateAuthorViewController.swift */,
+				4BAE26041FF647D700D1D116 /* ViewerTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -165,6 +172,7 @@
 				4B8D6D6F1FD6A4F0006B5B58 /* ChartDefaults.swift */,
 				4B8D6D711FD6A53F006B5B58 /* Env.swift */,
 				4B9200D31FD72A5800434136 /* Reachability.swift */,
+				4BB5BFDB1FFBA84F00897ACB /* Notifications.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -192,6 +200,7 @@
 				4B824BE31FC4452000C2B8CA /* CreateBookViewModel.swift */,
 				4BAB09351FD6AE8F00A66050 /* ChartViewModel.swift */,
 				4BAE26001FF63E4900D1D116 /* CreateAuthorViewModel.swift */,
+				4B6166BA1FF6585C0007A56A /* ViewerBookTableCell.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -359,10 +368,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BAE26051FF647D700D1D116 /* ViewerTableViewController.swift in Sources */,
 				4B6C205A1F9D28DD00B74B21 /* Book.swift in Sources */,
 				4B6C20581F9D23A600B74B21 /* ApiClient.swift in Sources */,
 				4B4ECA9A1F9FBE22004566F4 /* BookDetailsViewModel.swift in Sources */,
 				4B824BE21FC43A3E00C2B8CA /* CreateBookViewController.swift in Sources */,
+				4BB5BFDC1FFBA84F00897ACB /* Notifications.swift in Sources */,
 				4B9200DD1FD74F1E00434136 /* UpdateOperation.swift in Sources */,
 				4B4ECA9C1F9FCA2B004566F4 /* EditBookViewController.swift in Sources */,
 				4B6C20531F9CD83100B74B21 /* Constants.swift in Sources */,
@@ -371,6 +382,7 @@
 				4BAB09361FD6AE8F00A66050 /* ChartViewModel.swift in Sources */,
 				4B6C20611F9D3A8700B74B21 /* BookTableViewCell.swift in Sources */,
 				4B8D6D701FD6A4F0006B5B58 /* ChartDefaults.swift in Sources */,
+				4B6166BB1FF6585C0007A56A /* ViewerBookTableCell.swift in Sources */,
 				4B52528E1F9CAF8A0058769C /* ViewController.swift in Sources */,
 				4B6C20561F9CD85D00B74B21 /* User.swift in Sources */,
 				4B6C20631F9D3ACC00B74B21 /* Author.swift in Sources */,

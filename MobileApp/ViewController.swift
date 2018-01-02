@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import KeychainSwift
+import UserNotifications
 class ViewController: UIViewController,UITextFieldDelegate {
     
     //MARK: Outlets
@@ -27,7 +28,9 @@ class ViewController: UIViewController,UITextFieldDelegate {
     //MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in
+        })
+
         
         //Some design things
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
@@ -103,7 +106,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
                 
                 switch self.viewModel.user!.Role{
                 case 1:
-                    let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
+                    let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewerTableViewController") as! ViewerTableViewController
                     self.navigationController?.pushViewController(profileViewController, animated: true)
                     self.dismiss(animated: false, completion: nil)
                 case 2:

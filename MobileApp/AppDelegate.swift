@@ -23,22 +23,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let token = keychain.get(KeychainSwift.Keys.Token){
             if !Reachability.isConnectedToNetwork(){
                 let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
-                let homeviewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
- 
-                let nav = UINavigationController(rootViewController: homeviewcontroller)
-                self.window!.rootViewController = nav
-                self.window!.makeKeyAndVisible()
+                if UserDefaults.standard.string(forKey: UserDefaults.Keys.Role)=="1"{
+                    let homeviewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "ViewerTableViewController") as! ViewerTableViewController
+                    let nav = UINavigationController(rootViewController: homeviewcontroller)
+                    self.window!.rootViewController = nav
+                    self.window!.makeKeyAndVisible()
+                }else{
+                    let homeviewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
+                    let nav = UINavigationController(rootViewController: homeviewcontroller)
+                    self.window!.rootViewController = nav
+                    self.window!.makeKeyAndVisible()
+                }
+                
             }
             else
             {
                 
             apiClient.RefreshTokenIfNecessary(token:token) {
                 let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
-                let homeviewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
+                if UserDefaults.standard.string(forKey: UserDefaults.Keys.Role)=="1"{
+                    let homeviewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "ViewerTableViewController") as! ViewerTableViewController
+                    let nav = UINavigationController(rootViewController: homeviewcontroller)
+                    self.window!.rootViewController = nav
+                    self.window!.makeKeyAndVisible()
+                }else{
+                    let homeviewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
+                    let nav = UINavigationController(rootViewController: homeviewcontroller)
+                    self.window!.rootViewController = nav
+                    self.window!.makeKeyAndVisible()
+                }
                 
-                let nav = UINavigationController(rootViewController: homeviewcontroller)
-                self.window!.rootViewController = nav
-                self.window!.makeKeyAndVisible()
+                
                 }
             }
         }
