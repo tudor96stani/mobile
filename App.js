@@ -9,6 +9,8 @@ import ApiClient from "./src/Utils/ApiClient";
 import BookEdit from "./src/Components/BookEdit/BookEdit";
 import AddBook from './src/Components/AddBook/AddBook';
 import Chart from './src/Components/Chart/Chart';
+import AddAuthor from './src/Components/AddAuthor/AddAuthor';
+import ViewerBookList from './src/Components/ViewerBookList/ViewerBookList';
 const Application = StackNavigator(
   {
     Login: { screen: Login },
@@ -17,7 +19,9 @@ const Application = StackNavigator(
     BookDetails: { screen: BookDetails },
     BookEdit: { screen: BookEdit },
     AddBook:{screen:AddBook},
-    Chart:{screen:Chart}
+    Chart:{screen:Chart},
+    AddAuthor:{screen:AddAuthor},
+    ViewerBookList:{screen:ViewerBookList}
   },
   {
     headerMode: "screen",

@@ -11,6 +11,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import ApiClient from "../../Utils/ApiClient";
+
 // create a component
 class AddBook extends Component {
   static navigationOptions = {
@@ -38,6 +39,7 @@ class AddBook extends Component {
   };
 
   save = async () => {
+    
     var title = this.state.title;
     var authorid = "";
     console.log(this.state.author);
@@ -55,9 +57,15 @@ class AddBook extends Component {
     }
     this.props.navigation.state.params.onGoBack();
     this.props.navigation.goBack();
+  
+
   };
 
+ 
+
   render() {
+    const { state } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     let authorItems = this.state.authors.map(data => {
       return (
         <Picker.Item
@@ -68,6 +76,7 @@ class AddBook extends Component {
       );
     });
     return (
+      
       <View style={styles.container}>
         <TextInput
           style={styles.input}
@@ -92,6 +101,13 @@ class AddBook extends Component {
 
         <TouchableOpacity style={styles.buttonContainer} onPress={this.save}>
           <Text style={styles.buttonText}>Add</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonContainer} 
+          onPress={
+              () => 
+              navigate("AddAuthor",{onGoBack: () => this.fetchAuthors()})
+              }>
+          <Text style={styles.buttonText}>Add author</Text>
         </TouchableOpacity>
       </View>
     );

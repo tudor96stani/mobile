@@ -3,6 +3,7 @@ package com.mobileappreact;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.horcrux.svg.SvgPackage;
 import com.reactlibrary.mailcompose.RNMailComposePackage;
 import com.chirag.RNMail.RNMail;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativePushNotificationPackage(),
             new SvgPackage(),
             new RNMailComposePackage(),
             new RNMail()

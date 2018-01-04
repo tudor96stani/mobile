@@ -13,6 +13,7 @@ import ApiClient from "../../Utils/ApiClient";
 import { NetInfo } from "react-native";
 import * as Constants from "../../Utils/ApiClient";
 import * as StorageKeys from "../../Utils/Constants";
+import { AsycnStorageKeys } from "../../Utils/Constants";
 // create a component
 export default class Login extends Component {
   static navigationOptions = {
@@ -32,90 +33,45 @@ export default class Login extends Component {
   _loadInitialState = async () => {
     //verify if the user already logged in
     var type1 = await NetInfo.getConnectionInfo();
-    
+
     var value = await AsyncStorage.getItem("userid");
     if (value != null) {
       var type = await NetInfo.getConnectionInfo();
-
+      var role = await AsyncStorage.getItem("role");
       if (type.type === "none") {
-       
-        this.props.navigation.navigate("BookList");
+        if (role === "1") {
+          this.props.navigation.navigate("ViewerBookList");
+        } else {
+          this.props.navigation.navigate("BookList");
+        }
       } else {
         ApiClient.refresh().then(x => {
-          this.props.navigation.navigate("BookList");
+          if (role === "1") {
+            this.props.navigation.navigate("ViewerBookList");
+          } else {
+            this.props.navigation.navigate("BookList");
+          }
         });
       }
     }
   };
 
-  Login = () => {
-    // var params = {
-    //   grant_type: "password",
-    //   username: this.state.username,
-    //   password: this.state.password
-    // };
-    // var formData = new FormData();
-
-    // for (var k in params) {
-    //   formData.append(k, params[k]);
-    // }
-
-    // var formBody = [];
-    // for (var property in params) {
-    //   var encodedKey = encodeURIComponent(property);
-    //   var encodedValue = encodeURIComponent(params[property]);
-    //   formBody.push(encodedKey + "=" + encodedValue);
-    // }
-    // formBody = formBody.join("&");
-    // var headers = {
-    //   "Content-Type": "application/x-www-form-urlencoded"
-    // };
-    // var request = {
-    //   method: "POST",
-    //   headers: headers,
-    //   body: formBody
-    // };
-    // console.log(formBody);
-    // fetch(Constants.LOGIN_URL, request)
-    //   .then(response => {
-    //     if (response.status >= 200 && response.status < 300) {
-    //       console.log("response status code == 200");
-    //       return response;
-    //     } else if (response.status === 401) {
-    //       let error = new Error("Incorrect username or password");
-    //       error.message = "Incorrect username or password";
-    //       error.response = response;
-    //       throw error;
-    //     } else {
-    //       let error = new Error(response.statusText);
-    //       error.message = "Error";
-    //       let code = response.status;
-    //       console.log("Status :" + code);
-    //       error.response = response;
-    //       throw error;
-    //     }
-    //   })
-    //   .then(response => response.json())
-    //   .then(res => {
-    //     var id = res.Id;
-    //     var username = res.Username;
-    //     var token = res.access_token;
-    //     var role = res.role;
-    //     this.SaveInfo(username, this.state.password, token, id,role);
-    //     this.props.navigation.navigate("BookList");
-    //   })
-    //   .catch(e => {
-    //     Alert.alert(e.message);
-    //     console.log(e.message);
-    //   })
-    //   .done();
-    ApiClient.login(this.state.username, this.state.password).then(result => {
-      if (result === "OK") this.props.navigation.navigate("BookList");
-      else {
-        //Alert.alert("There was ane error");
-        console.log("Cacat", "Cacat");
+  Login = async () => {
+    var result = await ApiClient.login(this.state.username, this.state.password);
+    if (result === "OK") 
+    {
+      var role = await AsyncStorage.getItem("role");
+      console.log(role);
+      if(role==="1")
+      {
+        this.props.navigation.navigate("ViewerBookList");
+      }else{
+      this.props.navigation.navigate("BookList");
       }
-    });
+    }
+    else {
+        //Alert.alert("There was ane error");
+      }
   };
 
   SaveInfo = async (username, password, token, id, role) => {

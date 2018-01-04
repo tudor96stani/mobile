@@ -8,6 +8,8 @@ export const AUTHORS_URL = BASE_URL + "authors";
 export const UPDATE_BOOK_URL = BASE_URL + "books/update";
 export const ADD_BOOK_URL = BASE_URL + "books/create";
 export const DELETE_BOOK_URL = BASE_URL + "books/delete/";
+export const ADD_AUTHOR_URL = BASE_URL + "authors/create";
+export const GET_ALL_BOOKS_URL = BASE_URL + "books/GetAll";
 import { NetInfo } from "react-native";
 export default class ApiClient {
   static username = "";
@@ -71,12 +73,13 @@ export default class ApiClient {
     var id = jsonRes.Id;
     var username = jsonRes.Username;
     var token = jsonRes.access_token;
-    var role = jsonRes.role;
-
+    var role = jsonRes.Role;
+    
     await AsyncStorage.setItem("userid", String(id));
     await AsyncStorage.setItem("username", String(username));
     await AsyncStorage.setItem("token", String(token));
     await AsyncStorage.setItem("password", String(password));
+   
     await AsyncStorage.setItem("role", String(role));
     return "OK";
   }
@@ -104,7 +107,45 @@ export default class ApiClient {
 
       if (response.status >= 200 && response.status < 300) {
         var jsonRes = await response.json();
-        var a = 4;
+        
+        await AsyncStorage.setItem("books", JSON.stringify(jsonRes));
+        var authors = [];
+        for (let b of jsonRes) {
+          authors.push(b.author);
+        }
+        await AsyncStorage.setItem("books", JSON.stringify(authors));
+        return jsonRes;
+      } else {
+        return null;
+      }
+    }
+  }
+
+  static async fetchAllBooks()
+  {
+    var type = await NetInfo.getConnectionInfo();
+    if (type.type === "none") {
+      //no connection -> fetch data from the local storage
+      const books = await AsyncStorage.getItem("books");
+      if (books !== null) {
+        return JSON.parse(books);
+      }
+    } else {
+      //var userid = await AsyncStorage.getItem("userid");
+      var token = await AsyncStorage.getItem("token");
+      const headers = {
+        Authorization: "Bearer " + token
+      };
+      const url = GET_ALL_BOOKS_URL
+
+      var response = await fetch(url, {
+        method: "GET",
+        headers: headers
+      });
+
+      if (response.status >= 200 && response.status < 300) {
+        var jsonRes = await response.json();
+        
         await AsyncStorage.setItem("books", JSON.stringify(jsonRes));
         var authors = [];
         for (let b of jsonRes) {
@@ -305,6 +346,51 @@ export default class ApiClient {
         }
       }
       return { ok: false };
+    }
+  };
+
+  static addAuthor = async (firstName,lastName) => {
+    var conn = await NetInfo.getConnectionInfo();
+    if(conn.type==="none")
+    {
+      
+    }
+    else
+    {
+      var params = {
+        firstName: firstName,
+        lastName: lastName
+      };
+      var token = await AsyncStorage.getItem("token");
+      var formBody = [];
+      for (var property in params) {
+        var encodedKey = encodeURIComponent(property);
+        var encodedValue = encodeURIComponent(params[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+      }
+      formBody = formBody.join("&");
+      var headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: "Bearer " + token
+      };
+
+      var response = await fetch(ADD_AUTHOR_URL, {
+        method: "POST",
+        headers: headers,
+        body: formBody
+      });
+
+      if (response.status >= 200 && response.status < 300) {
+        var jsonRes = await response.json();
+        if (jsonRes.ok === true) {
+          return { Ok: true, res: jsonRes.Author, message: jsonRes.Message };
+        } else {
+          return { Ok: false, res: null, message: jsonRes.Message };
+        }
+      } else {
+        console.log(response.status);
+        return { Ok: false, res: null, message: "Error" };
+      }
     }
   };
 
